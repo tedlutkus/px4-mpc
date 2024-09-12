@@ -37,7 +37,7 @@ __contact__ = "jalim@ethz.ch"
 
 from launch import LaunchDescription
 from launch_ros.actions import Node
-from ament_index_python.packages import get_package_share_directory
+#from ament_index_python.packages import get_package_share_directory
 import os
 
 
@@ -51,6 +51,7 @@ def generate_launch_description():
             output='screen',
             emulate_tty=True,
         ),
+        """
         Node(
             package='px4_mpc',
             namespace='px4_mpc',
@@ -78,4 +79,5 @@ def generate_launch_description():
             name='rviz2',
             arguments=['-d', [os.path.join(get_package_share_directory('px4_mpc'), 'config.rviz')]]
         )
+        """
     ])
