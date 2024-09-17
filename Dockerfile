@@ -1,8 +1,10 @@
 ARG FROM_IMAGE=ros:humble
 ARG OVERLAY_WS=/opt/ros/overlay_ws
+ARG TARGETPLATFORM=linux/arm64/v8  # Default to arm64/v8
 
 # multi-stage for caching
-FROM $FROM_IMAGE AS cacher
+FROM --platform=$TARGETPLATFORM $FROM_IMAGE AS cacher
+#FROM $FROM_IMAGE AS cacher
 
 # clone overlay source
 ARG OVERLAY_WS

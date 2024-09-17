@@ -29,6 +29,18 @@
 # ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 #
+
+"""
+dataset -> model -> controller
+upload/download - complete
+train model
+run controller
+
+prepare data
+train model
+run controller
+"""
+
 ############################################################################
 
 from acados_template import AcadosOcp, AcadosOcpSolver, AcadosSimSolver
