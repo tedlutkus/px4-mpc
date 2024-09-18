@@ -16,3 +16,6 @@ venv.bak/
 
 *c_generated_code*
 *.json
+
+*.gz
+*.tar

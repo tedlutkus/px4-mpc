@@ -1,10 +1,10 @@
 ARG FROM_IMAGE=ros:humble
 ARG OVERLAY_WS=/opt/ros/overlay_ws
-ARG TARGETPLATFORM=linux/arm64/v8  # Default to arm64/v8
+#ARG TARGETPLATFORM=linux/arm64/v8  # Default to arm64/v8
 
 # multi-stage for caching
-FROM --platform=$TARGETPLATFORM $FROM_IMAGE AS cacher
-#FROM $FROM_IMAGE AS cacher
+#FROM --platform=$TARGETPLATFORM $FROM_IMAGE AS cacher
+FROM $FROM_IMAGE AS cacher
 
 # clone overlay source
 ARG OVERLAY_WS
@@ -88,7 +88,8 @@ RUN apt-get update && \
       liblapack-dev \
       libhdf5-dev \
       python3-pip \
-      wget && \
+      wget \
+      cargo && \
     rm -rf /var/lib/apt/lists/*
 
 # Clone and build acados
@@ -105,12 +106,25 @@ RUN git clone https://github.com/acados/acados.git && \
 RUN pip3 install -e /opt/acados/interfaces/acados_template
 
 # Set environment variables for acados
-ENV LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/opt/acados/lib"
+#ENV LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/opt/acados/lib"
+ENV LD_LIBRARY_PATH="/opt/acados/lib"
 ENV ACADOS_SOURCE_DIR="/opt/acados"
 
-# Download and install the tera_renderer binary
-RUN wget https://github.com/acados/tera_renderer/releases/download/v0.0.34/t_renderer-v0.0.34-linux -O /opt/acados/bin/t_renderer && \
-    chmod +x /opt/acados/bin/t_renderer
+# Download and install the tera_renderer binary 
+#RUN wget https://github.com/acados/tera_renderer/releases/download/v0.0.34/t_renderer-v0.0.34-osx -O /opt/acados/bin/t_renderer && \
+#RUN wget https://github.com/acados/tera_renderer/releases/download/v0.0.34/t_renderer-v0.0.34-linux -O /opt/acados/bin/t_renderer && \
+#    chmod +x /opt/acados/bin/t_renderer
+
+# Compile tera renderer library from source
+WORKDIR /opt/acados/bin
+RUN git clone https://github.com/acados/tera_renderer.git && \
+    cd tera_renderer && \
+    cargo build --verbose --release && \
+    cd .. && \
+    mv tera_renderer/target/release/t_renderer .
+# git pull from https://github.com/acados/tera_renderer/tree/master
+# run command "cargo build --verbose --release"
+WORKDIR /opt
 
 # source entrypoint setup
 ENV OVERLAY_WS $OVERLAY_WS
@@ -121,3 +135,6 @@ RUN sed --in-place --expression \
 # run launch file
 CMD ["ros2", "launch", "px4_mpc", "mpc_quadrotor_launch.py"]
 #CMD ["ros2", "run", "px4_mpc", "mpc_quadrotor"]
+
+#export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:"/opt/acados/lib"
+# python3 examples/acados_python/getting_started/minimal_example_ocp.py

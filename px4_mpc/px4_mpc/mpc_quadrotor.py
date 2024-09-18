@@ -127,7 +127,7 @@ class QuadrotorMPC(Node):
         self.vehicle_attitude = np.array([1.0, 0.0, 0.0, 0.0])
         self.vehicle_local_position = np.array([0.0, 0.0, 0.0])
         self.vehicle_local_velocity = np.array([0.0, 0.0, 0.0])
-        self.setpoint_position = np.array([0.0, 0.0, 3.0])
+        self.setpoint_position = np.array([0.0, 0.0, 1.0])
 
     def vehicle_attitude_callback(self, msg):
         # TODO: handle NED->ENU transformation 
@@ -211,7 +211,7 @@ class QuadrotorMPC(Node):
         if self.nav_state == VehicleStatus.NAVIGATION_STATE_OFFBOARD:
             setpoint_msg = VehicleRatesSetpoint()
             setpoint_msg.timestamp = int(Clock().now().nanoseconds / 1000)
-            setpoint_msg.roll = float(thrust_rates[1])
+            setpoint_msg.roll = float(100000.0) # Testing that messages actually getting through
             setpoint_msg.pitch = float(-thrust_rates[2])
             setpoint_msg.yaw = float(-thrust_rates[3])
             setpoint_msg.thrust_body[0] = 0.0
