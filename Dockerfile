@@ -19,10 +19,6 @@ repositories: \n\
     type: git \n\
     url: https://github.com/PX4/px4_msgs.git \n\
     version: main \n\
-  px4_ros_com: \n\
-    type: git \n\
-    url: https://github.com/PX4/px4_ros_com.git \n\
-    version: main \n\
   px4_mpc: \n\
     type: git \n\
     url: https://github.com/tedlutkus/px4-mpc.git \n\
@@ -33,8 +29,16 @@ repositories: \n\
     version: master \n\
 " > ../overlay.repos
 
+#px4_ros_com: \n\
+#type: git \n\
+#url: https://github.com/PX4/px4_ros_com.git \n\
+#version: main \n\
+
 # Import all repositories using vcs
 RUN vcs import ./ < ../overlay.repos
+
+# Copy local msg into px4_msgs
+COPY ./msg px4_msgs/msg
 
 # copy manifests for caching
 WORKDIR /opt
@@ -57,7 +61,7 @@ RUN . /opt/ros/$ROS_DISTRO/setup.sh && \
         src/ros2/demos/demo_nodes_cpp \
         src/ros2/demos/demo_nodes_py \
         src/px4_msgs \
-        src/px4_ros_com \
+        #src/px4_ros_com \
         src/px4_mpc \
         src/px4_offboard \
       --ignore-src \
@@ -72,7 +76,7 @@ RUN . /opt/ros/$ROS_DISTRO/setup.sh && \
         demo_nodes_cpp \
         demo_nodes_py \
         px4_msgs \
-        px4_ros_com \
+        #px4_ros_com \
         px4_mpc \
         mpc_msgs \
         px4_offboard \
