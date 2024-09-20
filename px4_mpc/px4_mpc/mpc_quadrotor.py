@@ -211,7 +211,7 @@ class QuadrotorMPC(Node):
         if True: #self.nav_state == VehicleStatus.NAVIGATION_STATE_OFFBOARD:
             setpoint_msg = VehicleRatesSetpoint()
             setpoint_msg.timestamp = int(Clock().now().nanoseconds / 1000)
-            setpoint_msg.roll = float(100000.0) # Testing that messages actually getting through
+            setpoint_msg.roll = float(thrust_rates[1])
             setpoint_msg.pitch = float(-thrust_rates[2])
             setpoint_msg.yaw = float(-thrust_rates[3])
             setpoint_msg.thrust_body[0] = 0.0
