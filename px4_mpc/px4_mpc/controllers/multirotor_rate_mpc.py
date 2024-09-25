@@ -77,10 +77,10 @@ class MultirotorRateMPC():
         # set dimensions
         ocp.dims.N = N_horizon
 
-        # set cost
-        Q_mat = 2*np.diag([1e1, 1e1, 1e1, 1e1, 1e1, 1e1, 0.0, 0.1, 0.1, 0.1])
-        Q_e = 2*np.diag([3e2, 3e2, 3e2, 1e2, 1e2, 1e2, 0.0, 0.0, 0.0, 0.0])
-        R_mat = 2*np.diag([1e1, 5e2, 5e2, 5e2])
+        # set cost (p3, v3, q4)
+        Q_mat = np.diag([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0])
+        Q_e = np.diag([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0])
+        R_mat = np.diag([1e1, 1e2, 1e2, 1e2])
 
         # TODO: How do you add terminal costs?
 

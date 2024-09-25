@@ -8,6 +8,7 @@ FROM $FROM_IMAGE AS cacher
 
 # clone overlay source
 #ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
+RUN date > /cache-bust
 ARG OVERLAY_WS
 WORKDIR $OVERLAY_WS/src
 RUN echo "\
