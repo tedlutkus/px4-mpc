@@ -144,4 +144,5 @@ CMD ["ros2", "launch", "px4_mpc", "mpc_quadrotor_launch.py"]
 
 #export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:"/opt/acados/lib"
 # python3 examples/acados_python/getting_started/minimal_example_ocp.py
-# docker run -d -v $(pwd)/q_r_weights/Q_R_weights.json:/mpc_config/Q_R_weights.json px4_mpc
+
+# docker run -d -v $(pwd)/mpc_qr_weights/qr_weights.json:/mpc_config/qr_weights.json px4_mpc
