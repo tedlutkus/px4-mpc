@@ -47,6 +47,7 @@ from acados_template import AcadosOcp, AcadosOcpSolver, AcadosSimSolver
 import numpy as np
 import scipy.linalg
 import casadi as cs
+import json
 
 class MultirotorRateMPC():
     def __init__(self, model):
@@ -78,9 +79,15 @@ class MultirotorRateMPC():
         ocp.dims.N = N_horizon
 
         # set cost (p3, v3, q4)
-        Q_mat = np.diag([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0])
-        Q_e = np.diag([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0])
-        R_mat = np.diag([1e1, 1e2, 1e2, 1e2])
+        # Load Q and R weights from /config/px4_mpc.json
+        with open("/mpc_config/Q_R_weights.json", 'r') as file:
+            data = json.load(file)
+        Q_mat = np.diag(data['Q'])
+        Q_e = np.diag(data['Q'])
+        R_mat = np.diag(data['R'])
+        #Q_mat = np.diag([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0])
+        #Q_e = np.diag([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0])
+        #R_mat = np.diag([1e1, 1e2, 1e2, 1e2])
 
         # TODO: How do you add terminal costs?
 
