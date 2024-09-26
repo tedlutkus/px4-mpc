@@ -9,6 +9,7 @@ FROM $FROM_IMAGE AS cacher
 # clone overlay source
 ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
 #RUN date > /cache-bust
+#ADD cache-bust.txt /tmp/cache-bust.txt
 ARG OVERLAY_WS
 WORKDIR $OVERLAY_WS/src
 RUN echo "\
@@ -146,3 +147,4 @@ CMD ["ros2", "launch", "px4_mpc", "mpc_quadrotor_launch.py"]
 # python3 examples/acados_python/getting_started/minimal_example_ocp.py
 
 # docker run -d -v $(pwd)/mpc_qr_weights/qr_weights.json:/mpc_config/qr_weights.json px4_mpc
+# docker run -d -v $(pwd)/mpc_qr_weights/qr_weights.json:/mpc_config/qr_weights.json localhost:5000/px4_mpc
