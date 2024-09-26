@@ -15,7 +15,6 @@ venv.bak/
 .vscode/*
 
 *c_generated_code*
-*.json
 
 *.gz
 *.tar
