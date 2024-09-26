@@ -80,7 +80,7 @@ class MultirotorRateMPC():
 
         # set cost (p3, v3, q4)
         # Load Q and R weights from /config/px4_mpc.json
-        with open("/mpc_config/Q_R_weights.json", 'r') as file:
+        with open("/mpc_config/qr_weights.json", 'r') as file:
             data = json.load(file)
         Q_mat = np.diag(data['Q'])
         Q_e = np.diag(data['Q'])

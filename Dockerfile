@@ -7,8 +7,8 @@ ARG OVERLAY_WS=/opt/ros/overlay_ws
 FROM $FROM_IMAGE AS cacher
 
 # clone overlay source
-#ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
-RUN date > /cache-bust
+ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
+#RUN date > /cache-bust
 ARG OVERLAY_WS
 WORKDIR $OVERLAY_WS/src
 RUN echo "\
@@ -144,3 +144,4 @@ CMD ["ros2", "launch", "px4_mpc", "mpc_quadrotor_launch.py"]
 
 #export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:"/opt/acados/lib"
 # python3 examples/acados_python/getting_started/minimal_example_ocp.py
+# docker run -d -v $(pwd)/q_r_weights/Q_R_weights.json:/mpc_config/Q_R_weights.json px4_mpc
