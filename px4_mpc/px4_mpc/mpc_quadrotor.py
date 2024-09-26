@@ -207,7 +207,7 @@ class QuadrotorMPC(Node):
 
         thrust_rates = u_pred[0, :]
         # Hover thrust = 0.73
-        thrust_command = -(thrust_rates[0] * 0.07 + 0.0)
+        thrust_command = -(thrust_rates[0])# * 0.07 + 0.0)
         if True: #self.nav_state == VehicleStatus.NAVIGATION_STATE_OFFBOARD:
             setpoint_msg = VehicleRatesSetpoint()
             setpoint_msg.timestamp = int(Clock().now().nanoseconds / 1000)
