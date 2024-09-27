@@ -105,7 +105,7 @@ class QuadrotorMPC(Node):
         self.reference_pub = self.create_publisher(Marker, "/px4_mpc/reference", 10
         )
 
-        timer_period = 0.01  # seconds
+        timer_period = 0.02  # seconds
         self.timer = self.create_timer(timer_period, self.cmdloop_callback)
 
         self.nav_state = VehicleStatus.NAVIGATION_STATE_MAX
