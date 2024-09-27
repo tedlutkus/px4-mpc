@@ -114,7 +114,7 @@ class QuadrotorMPC(Node):
         self.model = MultirotorRateModel()
 
         # Create MPC Solver
-        MPC_HORIZON = 15
+        MPC_HORIZON = 10
 
         # Spawn Controller
         self.mpc = MultirotorRateMPC(self.model)

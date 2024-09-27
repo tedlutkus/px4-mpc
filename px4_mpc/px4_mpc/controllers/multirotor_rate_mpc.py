@@ -53,7 +53,7 @@ class MultirotorRateMPC():
     def __init__(self, model):
         self.model = model
         self.Tf = 1.0
-        self.N = 50
+        self.N = 10
 
         self.x0 = np.array([0.01, 0.0, 0.0, 1.0, 1.0, 0.0, 1.0, 0.0, 0.0, 0.0])
 

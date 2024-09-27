@@ -152,3 +152,5 @@ CMD ["ros2", "launch", "px4_mpc", "mpc_quadrotor_launch.py"]
 # ros2 service call /set_pose mpc_msgs/srv/SetPose "{pose: {position: {x: 0.0, y: 0.0, z: 1.0}}}"
 # px4-qshell ekf2 stop
 # px4-qshell ekf2 start
+# docker push 192.168.8.1:5000/px4_mpc:latest
+# docker pull localhost:5000/px4_mpc:latest
