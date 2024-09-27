@@ -148,3 +148,7 @@ CMD ["ros2", "launch", "px4_mpc", "mpc_quadrotor_launch.py"]
 
 # docker run -d -v $(pwd)/mpc_qr_weights/qr_weights.json:/mpc_config/qr_weights.json px4_mpc
 # docker run -d -v $(pwd)/mpc_qr_weights/qr_weights.json:/mpc_config/qr_weights.json localhost:5000/px4_mpc
+# ros2 service call /set_pose mpc_msgs/srv/SetPose "{pose: {position: {x: 0.0, y: 0.0, z: 1.0}, orientation: {x: 0.0, y: 0.0, z: 0.0, w: 1.0}}}"
+# ros2 service call /set_pose mpc_msgs/srv/SetPose "{pose: {position: {x: 0.0, y: 0.0, z: 1.0}}}"
+# px4-qshell ekf2 stop
+# px4-qshell ekf2 start
