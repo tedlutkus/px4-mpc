@@ -135,6 +135,12 @@ class QuadrotorMPC(Node):
         self.vehicle_local_velocity = np.array([0.0, 0.0, 0.0])
         self.setpoint_position = np.array([0.0, 0.0, 1.0])
 
+        with open("/mpc_config/qr_weights.json", 'r') as file:
+            scale_data = json.load(file)
+        self.scale_x_control = scale_data['scale_x_control']
+        self.scale_y_control = scale_data['scale_y_control']
+        self.scale_z_control = scale_data['scale_z_control']
+
     def vehicle_attitude_callback(self, msg):
         # TODO: handle NED->ENU transformation 
         self.vehicle_attitude[0] = msg.q[0]
@@ -234,11 +240,11 @@ class QuadrotorMPC(Node):
 
     def manual_control_callback(self, msg):
         if abs(msg.roll) > 0.0:
-            self.setpoint_position[0] = self.vehicle_local_position[0] + (msg.roll*0.5/0.66)
+            self.setpoint_position[0] = self.vehicle_local_position[0] + (msg.pitch * self.scale_x_control * 0.5/0.66)
         if abs(msg.pitch) > 0.0:
-            self.setpoint_position[1] = self.vehicle_local_position[1] + (msg.pitch*0.5/0.66)
+            self.setpoint_position[1] = self.vehicle_local_position[1] + (msg.roll * self.scale_y_control * 0.5/0.66)
         if abs(msg.throttle) > 0.0:
-            self.setpoint_position[2] = self.vehicle_local_position[2] + (msg.throttle*0.5/0.66)
+            self.setpoint_position[2] = self.vehicle_local_position[2] + (msg.throttle * self.scale_z_control * 0.5/0.66)
 
 def main(args=None):
     rclpy.init(args=args)
