@@ -240,9 +240,9 @@ class QuadrotorMPC(Node):
         return response
 
     def manual_control_callback(self, msg):
-        if abs(msg.roll) > 0.0:
-            self.setpoint_position[0] = self.vehicle_local_position[0] + (msg.pitch * self.scale_x_control * 0.5/0.66)
         if abs(msg.pitch) > 0.0:
+            self.setpoint_position[0] = self.vehicle_local_position[0] + (msg.pitch * self.scale_x_control * 0.5/0.66)
+        if abs(msg.roll) > 0.0:
             self.setpoint_position[1] = self.vehicle_local_position[1] + (msg.roll * self.scale_y_control * 0.5/0.66)
         if abs(msg.throttle) > 0.0:
             self.setpoint_position[2] = self.vehicle_local_position[2] + (msg.throttle * self.scale_z_control * 0.5/0.66)
