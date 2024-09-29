@@ -56,6 +56,7 @@ from px4_msgs.msg import VehicleRatesSetpoint
 from px4_msgs.msg import ManualControlSetpoint
 
 from mpc_msgs.srv import SetPose
+import json
 
 def vector2PoseMsg(frame_id, position, attitude):
     pose_msg = PoseStamped()
