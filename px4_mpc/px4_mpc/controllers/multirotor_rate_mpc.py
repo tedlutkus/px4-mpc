@@ -56,6 +56,8 @@ class MultirotorRateMPC():
         self.N = 20
 
         self.x0 = np.array([0.01, 0.0, 0.0, 1.0, 1.0, 0.0, 1.0, 0.0, 0.0, 0.0])
+        
+        self.setpoint = np.array([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]).reshape(1, 14)
 
         self.ocp_solver, self.integrator = self.setup(self.x0, self.N , self.Tf)
 
@@ -83,11 +85,19 @@ class MultirotorRateMPC():
         with open("/mpc_config/qr_weights.json", 'r') as file:
             data = json.load(file)
         Q_mat = np.diag(data['Q'])
-        Q_e = np.diag(data['Q'])
+        Q_e = np.diag(data['Qe'])
         R_mat = np.diag(data['R'])
-        #Q_mat = np.diag([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0])
-        #Q_e = np.diag([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0])
-        #R_mat = np.diag([1e1, 1e2, 1e2, 1e2])
+        #Q_mat = np.diag([200, 200, 600, 0.1, 0.1, 0.1, 1, 1, 1, 1])
+        #Q_e = Q_mat
+        #R_mat = np.diag([5, 25, 25, 25])
+        
+        # Q_mat = 2*np.diag([1e2, 1e2, 1e5, 1e1, 1e1, 1e1, 0.0, 0.1, 0.1, 0.1])
+        # Q_e = 2*np.diag([1e3, 1e3, 1e6, 1e1, 1e1, 1e1, 0.0, 0.1, 0.1, 0.1])
+        # R_mat = 2*np.diag([1e1, 5e2, 5e2, 5e2])
+        
+        # Q_mat = 2*np.diag([1e1, 1e1, 1e1, 1e1, 1e1, 1e1, 0.0, 0.1, 0.1, 0.1])
+        # Q_e = 2*np.diag([3e2, 3e2, 3e2, 1e2, 1e2, 1e2, 0.0, 0.0, 0.0, 0.0])
+        # R_mat = 2*np.diag([1e1, 5e2, 5e2, 5e2])
 
         # TODO: How do you add terminal costs?
 
@@ -149,6 +159,14 @@ class MultirotorRateMPC():
         # set initial state
         ocp_solver.set(0, "lbx", x0)
         ocp_solver.set(0, "ubx", x0)
+        
+        # Linearly interpolate between x0 and zero for the first three states using numpy
+        # x0_cost = x0.reshape(1, 10)
+        # y_ref = np.tile(self.setpoint, (self.N, 1))
+        # y_ref[:, :3] = np.linspace(x0_cost[0, :3], self.setpoint[0, :3], self.N)
+        # print(y_ref[:, :3])
+        # for i in range(self.N):
+        #     ocp_solver.cost_set(i, "yref", y_ref[i, :])
 
         status = ocp_solver.solve()
         if verbose:
