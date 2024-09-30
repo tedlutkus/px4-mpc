@@ -154,3 +154,16 @@ CMD ["ros2", "launch", "px4_mpc", "mpc_quadrotor_launch.py"]
 # px4-qshell ekf2 start
 # docker push 192.168.8.1:5000/px4_mpc:latest
 # docker pull localhost:5000/px4_mpc:latest
+
+
+# Instructions to run the drone:
+# ssh into voxl
+# cd /
+# (might want to restart state estimates) -> px4-qshell ekf2 stop -> px4-qshell ekf2 start
+# docker run -d -v $(pwd)/mpc_qr_weights/qr_weights.json:/mpc_config/qr_weights.json localhost:5000/px4_mpc
+
+# To change the gains:
+# edit the json at /mpc_qr_weights/qr_weights.json
+# Q: state cost (higher = more important) [pos[3], vel[3], quaternion_attitude[4]]
+# R: control cost (higher = more cost for using control) [thrust, rate_x, rate_y, rate_z]
+# scale_control: multiplier to joystick input in setting moving position target in front of drone to reach
