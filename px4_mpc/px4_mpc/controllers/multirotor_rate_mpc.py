@@ -30,17 +30,6 @@
 # POSSIBILITY OF SUCH DAMAGE.
 #
 
-"""
-dataset -> model -> controller
-upload/download - complete
-train model
-run controller
-
-prepare data
-train model
-run controller
-"""
-
 ############################################################################
 
 from acados_template import AcadosOcp, AcadosOcpSolver, AcadosSimSolver
@@ -145,6 +134,9 @@ class MultirotorRateMPC():
 
         # set prediction horizon
         ocp.solver_options.tf = Tf
+        
+        # Residual model
+        ocp.parameter_values = self.model.parameter_values
 
         ocp_solver = AcadosOcpSolver(ocp, json_file = 'acados_ocp.json')
         # create an integrator with the same settings as used in the OCP solver.
