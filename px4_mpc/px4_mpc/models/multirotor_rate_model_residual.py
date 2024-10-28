@@ -115,7 +115,8 @@ class MultirotorRateModelResidual():
         
         # l4c model
         pytorch_model = MLP(MLPConfig())
-        pytorch_model.load_state_dict(torch.load('model_weights/cleo_residual_model_body_frame2.pt'))
+        # pytorch_model.load_state_dict(torch.load('model_weights/cleo_residual_model_body_frame2.pt'))
+        pytorch_model.load_state_dict(torch.load("/mpc_config/cleo_residual_model_body_frame2.pt", map_location=torch.device('cpu')))
         pytorch_model.eval()
         self.l4c_model = l4c.realtime.RealTimeL4CasADi(pytorch_model, approximation_order=1)
         self.parameter_values = None
