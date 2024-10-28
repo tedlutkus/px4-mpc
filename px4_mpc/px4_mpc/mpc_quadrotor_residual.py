@@ -33,8 +33,9 @@
 ############################################################################
 
 #from px4_mpc.models.multirotor_rate_model import MultirotorRateModel
+# from px4_mpc.controllers.multirotor_rate_mpc import MultirotorRateMPC
 from px4_mpc.models.multirotor_rate_model_residual import MultirotorRateModelResidual
-from px4_mpc.controllers.multirotor_rate_mpc import MultirotorRateMPC
+from px4_mpc.controllers.multirotor_rate_mpc_residual import MultirotorRateMPCResidual
 
 __author__ = "Jaeyoung Lim"
 __contact__ = "jalim@ethz.ch"
@@ -127,12 +128,8 @@ class QuadrotorMPC(Node):
         MPC_HORIZON = 10
 
         # Spawn Controller
-        self.mpc = MultirotorRateMPC(self.model)
-        # self.ctl = SetpointMPC(model=self.quad,
-        #                 dynamics=self.quad.model,
-        #                 param='P1',
-        #                 N=MPC_HORIZON,
-        #                 ulb=ulb, uub=uub, xlb=xlb, xub=xub)
+        # self.mpc = MultirotorRateMPC(self.model)
+        self.mpc = MultirotorRateMPCResidual(self.model)
 
         self.vehicle_attitude = np.array([1.0, 0.0, 0.0, 0.0])
         self.vehicle_local_position = np.array([0.0, 0.0, 0.0])
@@ -207,6 +204,9 @@ class QuadrotorMPC(Node):
         x0 = np.array([error_position[0], error_position[1], error_position[2],
          self.vehicle_local_velocity[0], self.vehicle_local_velocity[1], self.vehicle_local_velocity[2], 
          self.vehicle_attitude[0], self.vehicle_attitude[1], self.vehicle_attitude[2], self.vehicle_attitude[3]]).reshape(10, 1)
+
+        # Convert x0 to body frame
+        x0[3:6] = self.model.v_dot_q_to_body_func(x0[3:6], x0[6:10])
 
         # Linearize residual model around the trajectory states
         x_l = []

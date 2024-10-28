@@ -1,0 +1,37 @@
+{
+  "onyx_model_type": "mlp",
+  "sim_config": {
+    "outputs": [
+      "ax_res",
+      "ay_res",
+      "az_res",
+      "dq[0]_res",
+      "dq[1]_res",
+      "dq[2]_res",
+      "dq[3]_res"
+    ],
+    "states": [],
+    "controls": [
+      "vx",
+      "vy",
+      "vz",
+      "q[0]",
+      "q[1]",
+      "q[2]",
+      "q[3]",
+      "thrust_body[2]",
+      "roll",
+      "pitch",
+      "yaw"
+    ],
+    "dt": 0.1
+  },
+  "num_inputs": 11,
+  "num_outputs": 7,
+  "sequence_length": 1,
+  "hidden_layers": 3,
+  "hidden_size": 64,
+  "activation": "tanh",
+  "dropout": 0.2,
+  "bias": true
+}
