@@ -32,10 +32,8 @@
 #
 ############################################################################
 
-#from px4_mpc.models.multirotor_rate_model import MultirotorRateModel
-# from px4_mpc.controllers.multirotor_rate_mpc import MultirotorRateMPC
-from px4_mpc.models.multirotor_rate_model_residual import MultirotorRateModelResidual
-from px4_mpc.controllers.multirotor_rate_mpc_residual import MultirotorRateMPCResidual
+from px4_mpc.models.multirotor_rate_model import MultirotorRateModel
+from px4_mpc.controllers.multirotor_rate_mpc import MultirotorRateMPC
 
 __author__ = "Jaeyoung Lim"
 __contact__ = "jalim@ethz.ch"
@@ -120,16 +118,18 @@ class QuadrotorMPC(Node):
         self.nav_state = VehicleStatus.NAVIGATION_STATE_MAX
 
         # Create Quadrotor and controller objects
-        #self.model = MultirotorRateModel()
-        self.model = MultirotorRateModelResidual()
-
+        self.model = MultirotorRateModel()
 
         # Create MPC Solver
         MPC_HORIZON = 10
 
         # Spawn Controller
-        # self.mpc = MultirotorRateMPC(self.model)
-        self.mpc = MultirotorRateMPCResidual(self.model)
+        self.mpc = MultirotorRateMPC(self.model)
+        # self.ctl = SetpointMPC(model=self.quad,
+        #                 dynamics=self.quad.model,
+        #                 param='P1',
+        #                 N=MPC_HORIZON,
+        #                 ulb=ulb, uub=uub, xlb=xlb, xub=xub)
 
         self.vehicle_attitude = np.array([1.0, 0.0, 0.0, 0.0])
         self.vehicle_local_position = np.array([0.0, 0.0, 0.0])
@@ -204,20 +204,6 @@ class QuadrotorMPC(Node):
         x0 = np.array([error_position[0], error_position[1], error_position[2],
          self.vehicle_local_velocity[0], self.vehicle_local_velocity[1], self.vehicle_local_velocity[2], 
          self.vehicle_attitude[0], self.vehicle_attitude[1], self.vehicle_attitude[2], self.vehicle_attitude[3]]).reshape(10, 1)
-
-        # Convert x0 to body frame
-        x0[3:6] = self.model.v_dot_q_to_body_func(x0[3:6], x0[6:10])
-
-        # Linearize residual model around the trajectory states
-        x_l = []
-        x_l.append(np.concatenate((x0[3:].flatten(), self.mpc.ocp_solver.get(0, "u"))))
-        for i in range(1, self.mpc.N):
-            x_l_i = self.mpc.ocp_solver.get(i, "x")
-            u_l_i = self.mpc.ocp_solver.get(i, "u")
-            x_l.append(np.concatenate((x_l_i[3:], u_l_i)))
-        params = self.model.l4c_model.get_params(np.stack(x_l, axis=0))
-        for i in range(self.mpc.N):
-            self.mpc.ocp_solver.set(i, "p", params[i])
 
         u_pred, x_pred = self.mpc.solve(x0)
 
