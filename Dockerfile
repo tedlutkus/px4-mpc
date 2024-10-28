@@ -40,6 +40,14 @@ repositories: \n\
 # Import all repositories using vcs
 RUN vcs import ./ < ../overlay.repos
 
+# Install dependencies for l4casadi
+# Install system dependencies
+RUN apt-get update && \
+    apt-get install -y python3-pip
+RUN pip3 install torch>=2.0 --index-url https://download.pytorch.org/whl/cpu
+RUN pip3 install setuptools>=68.1 scikit-build>=0.17 cmake>=3.27 ninja>=1.11
+RUN pip3 install l4casadi --no-build-isolation
+
 # Copy local msg into px4_msgs
 COPY ./msg px4_msgs/msg
 

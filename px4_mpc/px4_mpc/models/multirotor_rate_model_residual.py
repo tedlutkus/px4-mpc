@@ -224,3 +224,8 @@ class MultirotorRateModelResidual():
                 cs.horzcat(2 * (qx * qz - qw * qy), 2 * (qy * qz + qw * qx), 1 - 2 * (qx ** 2 + qy ** 2)))
 
         return rot_mat
+    
+if __name__ == '__main__':
+    model = MultirotorRateModelResidual()
+    model.get_acados_model()
+    print("Model loaded successfully")
