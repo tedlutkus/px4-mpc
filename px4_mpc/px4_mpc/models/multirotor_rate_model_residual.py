@@ -39,10 +39,11 @@ import l4casadi as l4c
 import numpy as np
 import torch
 import torch.nn as nn
-from pydantic import BaseModel
+from dataclasses import dataclass
 from typing import Literal
 
-class MLPConfig(BaseModel):
+@dataclass
+class MLPConfig():
     num_inputs: int = 11
     num_outputs: int = 7
     sequence_length: int = 1
