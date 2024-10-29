@@ -212,9 +212,10 @@ class QuadrotorMPC(Node):
         x_l = []
         x_l.append(np.concatenate((x0[3:].flatten(), self.mpc.ocp_solver.get(0, "u"))))
         for i in range(1, self.mpc.N):
-            x_l_i = self.mpc.ocp_solver.get(i, "x")
-            u_l_i = self.mpc.ocp_solver.get(i, "u")
-            x_l.append(np.concatenate((x_l_i[3:], u_l_i)))
+            x_l.append(np.concatenate((x0[3:].flatten(), self.mpc.ocp_solver.get(0, "u"))))
+            #x_l_i = self.mpc.ocp_solver.get(i, "x")
+            #u_l_i = self.mpc.ocp_solver.get(i, "u")
+            #x_l.append(np.concatenate((x_l_i[3:], u_l_i)))
         params = self.model.l4c_model.get_params(np.stack(x_l, axis=0))
         for i in range(self.mpc.N):
             self.mpc.ocp_solver.set(i, "p", params[i])
