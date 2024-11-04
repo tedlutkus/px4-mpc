@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 ############################################################################
 #
-#   Copyright (C) 2023 PX4 Development Team. All rights reserved.
+#   Copyright (C) 2024 PX4 Development Team. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions
@@ -32,13 +32,8 @@
 #
 ############################################################################
 
-#from px4_mpc.models.multirotor_rate_model import MultirotorRateModel
-# from px4_mpc.controllers.multirotor_rate_mpc import MultirotorRateMPC
-from px4_mpc.models.multirotor_rate_model_residual import MultirotorRateModelResidual
-from px4_mpc.controllers.multirotor_rate_mpc_residual import MultirotorRateMPCResidual
-
-__author__ = "Jaeyoung Lim"
-__contact__ = "jalim@ethz.ch"
+__author__ = "Pedro Roque, Jaeyoung Lim"
+__contact__ = "padr@kth.se, jalim@ethz.ch"
 
 import rclpy
 import numpy as np
@@ -53,17 +48,23 @@ from visualization_msgs.msg import Marker
 from px4_msgs.msg import OffboardControlMode
 from px4_msgs.msg import VehicleStatus
 from px4_msgs.msg import VehicleAttitude
+from px4_msgs.msg import VehicleAngularVelocity
+from px4_msgs.msg import VehicleAngularVelocity
 from px4_msgs.msg import VehicleLocalPosition
 from px4_msgs.msg import VehicleRatesSetpoint
-from px4_msgs.msg import ManualControlSetpoint
+from px4_msgs.msg import ActuatorMotors
+from px4_msgs.msg import VehicleTorqueSetpoint
+from px4_msgs.msg import VehicleThrustSetpoint
 
 from mpc_msgs.srv import SetPose
-import json
+
+
 
 def vector2PoseMsg(frame_id, position, attitude):
     pose_msg = PoseStamped()
     # msg.header.stamp = Clock().now().nanoseconds / 1000
-    pose_msg.header.frame_id=frame_id
+    pose_msg.header.frame_id = frame_id
+    pose_msg.header.frame_id = frame_id
     pose_msg.pose.orientation.w = attitude[0]
     pose_msg.pose.orientation.x = attitude[1]
     pose_msg.pose.orientation.y = attitude[2]
@@ -73,7 +74,9 @@ def vector2PoseMsg(frame_id, position, attitude):
     pose_msg.pose.position.z = float(position[2])
     return pose_msg
 
-class QuadrotorMPC(Node):
+
+
+class SpacecraftMPC(Node):
 
     def __init__(self):
         super().__init__('minimal_publisher')
@@ -83,6 +86,9 @@ class QuadrotorMPC(Node):
             history=QoSHistoryPolicy.RMW_QOS_POLICY_HISTORY_KEEP_LAST,
             depth=1
         )
+
+        # Get mode; rate, wrench, direct_allocation
+        self.mode = 'wrench'#self.declare_parameter('mode', 'rate').value
 
         self.status_sub = self.create_subscription(
             VehicleStatus,
@@ -95,62 +101,65 @@ class QuadrotorMPC(Node):
             '/fmu/out/vehicle_attitude',
             self.vehicle_attitude_callback,
             qos_profile)
+        self.angular_vel_sub = self.create_subscription(
+            VehicleAngularVelocity,
+            '/fmu/out/vehicle_angular_velocity',
+            self.vehicle_angular_velocity_callback,
+            qos_profile)
         self.local_position_sub = self.create_subscription(
             VehicleLocalPosition,
             '/fmu/out/vehicle_local_position',
             self.vehicle_local_position_callback,
-            qos_profile)
-        self.manual_control_sub = self.create_subscription(
-            ManualControlSetpoint,
-            '/fmu/out/manual_control_setpoint',
-            self.manual_control_callback,
             qos_profile)
 
         self.set_pose_srv = self.create_service(SetPose, '/set_pose', self.add_set_pos_callback)
 
         self.publisher_offboard_mode = self.create_publisher(OffboardControlMode, '/fmu/in/offboard_control_mode', qos_profile)
         self.publisher_rates_setpoint = self.create_publisher(VehicleRatesSetpoint, '/fmu/in/vehicle_rates_setpoint', qos_profile)
+        self.publisher_direct_actuator = self.create_publisher(ActuatorMotors, '/fmu/in/actuator_motors', qos_profile)
+        self.publisher_thrust_setpoint = self.create_publisher(VehicleThrustSetpoint, '/fmu/in/vehicle_thrust_setpoint', qos_profile)
+        self.publisher_torque_setpoint = self.create_publisher(VehicleTorqueSetpoint, '/fmu/in/vehicle_torque_setpoint', qos_profile)
         self.predicted_path_pub = self.create_publisher(Path, '/px4_mpc/predicted_path', 10)
-        self.reference_pub = self.create_publisher(Marker, "/px4_mpc/reference", 10
-        )
+        self.reference_pub = self.create_publisher(Marker, "/px4_mpc/reference", 10)
+        self.reference_pub = self.create_publisher(Marker, "/px4_mpc/reference", 10)
 
         timer_period = 0.005  # seconds
         self.timer = self.create_timer(timer_period, self.cmdloop_callback)
 
         self.nav_state = VehicleStatus.NAVIGATION_STATE_MAX
 
-        # Create Quadrotor and controller objects
-        #self.model = MultirotorRateModel()
-        self.model = MultirotorRateModelResidual()
-
-
-        # Create MPC Solver
-        MPC_HORIZON = 10
-
-        # Spawn Controller
-        # self.mpc = MultirotorRateMPC(self.model)
-        self.mpc = MultirotorRateMPCResidual(self.model)
+        # Create Spacecraft and controller objects
+        if self.mode == 'rate':
+            from px4_mpc.models.spacecraft_rate_model import SpacecraftRateModel
+            from px4_mpc.controllers.spacecraft_rate_mpc import SpacecraftRateMPC
+            self.model = SpacecraftRateModel()
+            self.mpc = SpacecraftRateMPC(self.model)
+        elif self.mode == 'wrench':
+            from px4_mpc.models.multirotor_wrench_model import MultirotorWrenchModel
+            from px4_mpc.controllers.multirotor_wrench_mpc import MultirotorWrenchMPC
+            self.model = MultirotorWrenchModel()
+            self.mpc = MultirotorWrenchMPC(self.model)
+        elif self.mode == 'direct_allocation':
+            from px4_mpc.models.spacecraft_direct_allocation_model import SpacecraftDirectAllocationModel
+            from px4_mpc.controllers.spacecraft_direct_allocation_mpc import SpacecraftDirectAllocationMPC
+            self.model = SpacecraftDirectAllocationModel()
+            self.mpc = SpacecraftDirectAllocationMPC(self.model)
 
         self.vehicle_attitude = np.array([1.0, 0.0, 0.0, 0.0])
         self.vehicle_local_position = np.array([0.0, 0.0, 0.0])
+        self.vehicle_angular_velocity = np.array([0.0, 0.0, 0.0])
         self.vehicle_local_velocity = np.array([0.0, 0.0, 0.0])
-        self.setpoint_position = np.array([0.0, 0.0, 1.0])
-
-        with open("/mpc_config/qr_weights.json", 'r') as file:
-            scale_data = json.load(file)
-        self.scale_x_control = scale_data['scale_x_control']
-        self.scale_y_control = scale_data['scale_y_control']
-        self.scale_z_control = scale_data['scale_z_control']
+        self.setpoint_position = np.array([1.0, 0.0, 0.0])
 
     def vehicle_attitude_callback(self, msg):
-        # TODO: handle NED->ENU transformation 
+        # TODO: handle NED->ENU transformation
         self.vehicle_attitude[0] = msg.q[0]
         self.vehicle_attitude[1] = msg.q[1]
         self.vehicle_attitude[2] = -msg.q[2]
         self.vehicle_attitude[3] = -msg.q[3]
 
     def vehicle_local_position_callback(self, msg):
-        # TODO: handle NED->ENU transformation 
+        # TODO: handle NED->ENU transformation
         self.vehicle_local_position[0] = msg.x
         self.vehicle_local_position[1] = -msg.y
         self.vehicle_local_position[2] = -msg.z
@@ -158,11 +167,17 @@ class QuadrotorMPC(Node):
         self.vehicle_local_velocity[1] = -msg.vy
         self.vehicle_local_velocity[2] = -msg.vz
 
+    def vehicle_angular_velocity_callback(self, msg):
+        # TODO: handle NED->ENU transformation
+        self.vehicle_angular_velocity[0] = msg.xyz[0]
+        self.vehicle_angular_velocity[1] = -msg.xyz[1]
+        self.vehicle_angular_velocity[2] = -msg.xyz[2]
+
     def vehicle_status_callback(self, msg):
         # print("NAV_STATUS: ", msg.nav_state)
         # print("  - offboard status: ", VehicleStatus.NAVIGATION_STATE_OFFBOARD)
         self.nav_state = msg.nav_state
-    
+
     def publish_reference(self, pub, reference):
         msg = Marker()
         msg.action = Marker.ADD
@@ -188,64 +203,144 @@ class QuadrotorMPC(Node):
 
         pub.publish(msg)
 
+    def publish_rate_setpoint(self, u_pred):
+        thrust_rates = u_pred[0, :]
+        # Hover thrust = 0.73
+        thrust_command = thrust_rates[0:3] * 0.07  # NOTE: Tune in thrust multiplier
+        rates_setpoint_msg = VehicleRatesSetpoint()
+        rates_setpoint_msg.timestamp = int(Clock().now().nanoseconds / 1000)
+        rates_setpoint_msg.roll  = float(thrust_rates[3])
+        rates_setpoint_msg.pitch = -float(thrust_rates[4])
+        rates_setpoint_msg.yaw   = -float(thrust_rates[5])
+        rates_setpoint_msg.thrust_body[0] = float(thrust_command[0])
+        rates_setpoint_msg.thrust_body[1] = -float(thrust_command[1])
+        rates_setpoint_msg.thrust_body[2] = -float(thrust_command[2])
+        self.publisher_rates_setpoint.publish(rates_setpoint_msg)
+    def publish_rate_setpoint_wrench(self, x_pred, u_pred):
+        rates = x_pred[0, 10:13]
+        thrust_rates = u_pred[0, :]
+        # Hover thrust = 0.73
+        thrust_command = -(thrust_rates[0] * 0.07 + 0.0)
+        setpoint_msg = VehicleRatesSetpoint()
+        setpoint_msg.timestamp = int(Clock().now().nanoseconds / 1000)
+        setpoint_msg.roll = float(rates[0])
+        setpoint_msg.pitch = float(-rates[1])
+        setpoint_msg.yaw = float(-rates[2])
+        setpoint_msg.thrust_body[0] = 0.0
+        setpoint_msg.thrust_body[1] = 0.0
+        setpoint_msg.thrust_body[2] = float(thrust_command)
+        self.publisher_rates_setpoint.publish(setpoint_msg)
+    def publish_wrench_setpoint(self, u_pred):
+        thrust_outputs_msg = VehicleThrustSetpoint()
+        thrust_outputs_msg.timestamp = int(Clock().now().nanoseconds / 1000)
+
+        torque_outputs_msg = VehicleTorqueSetpoint()
+        torque_outputs_msg.timestamp = int(Clock().now().nanoseconds / 1000)
+
+        thrust_outputs_msg.xyz = [u_pred[0,0], -u_pred[0,1], -0.0]
+        torque_outputs_msg.xyz = [0.0, -0.0, -u_pred[0,2]]
+
+        self.publisher_thrust_setpoint.publish(thrust_outputs_msg)
+        self.publisher_torque_setpoint.publish(torque_outputs_msg)
+
+    def publish_direct_actuator_setpoint(self, u_pred):
+        actuator_outputs_msg = ActuatorMotors()
+        actuator_outputs_msg.timestamp = int(Clock().now().nanoseconds / 1000)
+
+        # NOTE:
+        # Output is float[16]
+        # u1 needs to be divided between 1 and 2
+        # u2 needs to be divided between 3 and 4
+        # u3 needs to be divided between 5 and 6
+        # u4 needs to be divided between 7 and 8
+        # positve component goes for the first, the negative for the second
+        thrust = u_pred[0, :] / self.model.max_thrust  # normalizes w.r.t. max thrust
+        # print("Thrust rates: ", thrust[0:4])
+
+        thrust_command = np.zeros(12, dtype=np.float32)
+        thrust_command[0] = 0.0 if thrust[0] <= 0.0 else thrust[0]
+        thrust_command[1] = 0.0 if thrust[0] >= 0.0 else -thrust[0]
+
+        thrust_command[2] = 0.0 if thrust[1] <= 0.0 else thrust[1]
+        thrust_command[3] = 0.0 if thrust[1] >= 0.0 else -thrust[1]
+
+        thrust_command[4] = 0.0 if thrust[2] <= 0.0 else thrust[2]
+        thrust_command[5] = 0.0 if thrust[2] >= 0.0 else -thrust[2]
+
+        thrust_command[6] = 0.0 if thrust[3] <= 0.0 else thrust[3]
+        thrust_command[7] = 0.0 if thrust[3] >= 0.0 else -thrust[3]
+
+        actuator_outputs_msg.control = thrust_command.flatten()
+        self.publisher_direct_actuator.publish(actuator_outputs_msg)
+
     def cmdloop_callback(self):
         # Publish offboard control modes
         offboard_msg = OffboardControlMode()
         offboard_msg.timestamp = int(Clock().now().nanoseconds / 1000)
-        offboard_msg.position=False
-        offboard_msg.velocity=False
-        offboard_msg.acceleration=False
+        offboard_msg.position = False
+        offboard_msg.velocity = False
+        offboard_msg.acceleration = False
         offboard_msg.attitude = False
-        offboard_msg.body_rate = True
+        offboard_msg.body_rate = False
+        offboard_msg.direct_actuator = False
+        if self.mode == 'rate':
+            offboard_msg.body_rate = True
+        elif self.mode == 'direct_allocation':
+            offboard_msg.direct_actuator = True
+        elif self.mode == 'wrench':
+            offboard_msg.body_rate = True
+            # offboard_msg.thrust_and_torque = True
         self.publisher_offboard_mode.publish(offboard_msg)
 
         error_position = self.vehicle_local_position - self.setpoint_position
 
-        x0 = np.array([error_position[0], error_position[1], error_position[2],
-         self.vehicle_local_velocity[0], self.vehicle_local_velocity[1], self.vehicle_local_velocity[2], 
-         self.vehicle_attitude[0], self.vehicle_attitude[1], self.vehicle_attitude[2], self.vehicle_attitude[3]]).reshape(10, 1)
-
-        # Convert x0 to body frame
-        x0[3:6] = self.model.v_dot_q_to_body_func(x0[3:6], x0[6:10])
-
-        # Linearize residual model around the trajectory states
-        x_l = []
-        x_l.append(np.concatenate((x0[3:].flatten(), self.mpc.ocp_solver.get(0, "u"))))
-        for i in range(1, self.mpc.N):
-            x_l.append(np.concatenate((x0[3:].flatten(), self.mpc.ocp_solver.get(0, "u"))))
-            #x_l_i = self.mpc.ocp_solver.get(i, "x")
-            #u_l_i = self.mpc.ocp_solver.get(i, "u")
-            #x_l.append(np.concatenate((x_l_i[3:], u_l_i)))
-        params = self.model.l4c_model.get_params(np.stack(x_l, axis=0))
-        for i in range(self.mpc.N):
-            self.mpc.ocp_solver.set(i, "p", params[i])
-
+        if self.mode == 'rate':
+            x0 = np.array([error_position[0],
+                           error_position[1],
+                           error_position[2],
+                           self.vehicle_local_velocity[0],
+                           self.vehicle_local_velocity[1],
+                           self.vehicle_local_velocity[2],
+                           self.vehicle_attitude[0],
+                           self.vehicle_attitude[1],
+                           self.vehicle_attitude[2],
+                           self.vehicle_attitude[3]]).reshape(10, 1)
+        elif self.mode == 'direct_allocation' or self.mode == 'wrench':
+            x0 = np.array([error_position[0],
+                           error_position[1],
+                           error_position[2],
+                           self.vehicle_local_velocity[0],
+                           self.vehicle_local_velocity[1],
+                           self.vehicle_local_velocity[2],
+                           self.vehicle_attitude[0],
+                           self.vehicle_attitude[1],
+                           self.vehicle_attitude[2],
+                           self.vehicle_attitude[3],
+                           self.vehicle_angular_velocity[0],
+                           self.vehicle_angular_velocity[1],
+                           self.vehicle_angular_velocity[2]]).reshape(13, 1)
         u_pred, x_pred = self.mpc.solve(x0)
 
         idx = 0
         predicted_path_msg = Path()
         for predicted_state in x_pred:
             idx = idx + 1
-                # Publish time history of the vehicle path
+            # Publish time history of the vehicle path
             predicted_pose_msg = vector2PoseMsg('map', predicted_state[0:3] + self.setpoint_position, np.array([1.0, 0.0, 0.0, 0.0]))
             predicted_path_msg.header = predicted_pose_msg.header
             predicted_path_msg.poses.append(predicted_pose_msg)
         self.predicted_path_pub.publish(predicted_path_msg)
         self.publish_reference(self.reference_pub, self.setpoint_position)
 
-        thrust_rates = u_pred[0, :]
-        # Hover thrust = 0.73
-        thrust_command = -(thrust_rates[0])# * 0.07 + 0.0)
-        if True: #self.nav_state == VehicleStatus.NAVIGATION_STATE_OFFBOARD:
-            setpoint_msg = VehicleRatesSetpoint()
-            setpoint_msg.timestamp = int(Clock().now().nanoseconds / 1000)
-            setpoint_msg.roll = float(thrust_rates[1])
-            setpoint_msg.pitch = float(-thrust_rates[2])
-            setpoint_msg.yaw = float(-thrust_rates[3])
-            setpoint_msg.thrust_body[0] = 0.0
-            setpoint_msg.thrust_body[1] = 0.0
-            setpoint_msg.thrust_body[2] = float(thrust_command)
-            self.publisher_rates_setpoint.publish(setpoint_msg)
+        if self.nav_state == VehicleStatus.NAVIGATION_STATE_OFFBOARD:
+            if self.mode == 'rate':
+                pass
+                #self.publish_rate_setpoint(u_pred)
+            elif self.mode == 'direct_allocation':
+                self.publish_direct_actuator_setpoint(u_pred)
+            elif self.mode == 'wrench':
+                # self.publish_wrench_setpoint(u_pred)
+                self.publish_rate_setpoint_wrench(x_pred, u_pred)
 
     def add_set_pos_callback(self, request, response):
         self.setpoint_position[0] = request.pose.position.x
@@ -254,22 +349,16 @@ class QuadrotorMPC(Node):
 
         return response
 
-    def manual_control_callback(self, msg):
-        if abs(msg.pitch) > 0.0:
-            self.setpoint_position[0] = self.vehicle_local_position[0] + (msg.pitch * self.scale_x_control * 0.5/0.66)
-        if abs(msg.roll) > 0.0:
-            self.setpoint_position[1] = self.vehicle_local_position[1] + (msg.roll * self.scale_y_control * 0.5/0.66)
-        if abs(msg.throttle) > 0.0:
-            self.setpoint_position[2] = self.vehicle_local_position[2] + (msg.throttle * self.scale_z_control * 0.5/0.66)
+
 
 def main(args=None):
     rclpy.init(args=args)
 
-    quadrotor_mpc = QuadrotorMPC()
+    spacecraft_mpc = SpacecraftMPC()
 
-    rclpy.spin(quadrotor_mpc)
+    rclpy.spin(spacecraft_mpc)
 
-    quadrotor_mpc.destroy_node()
+    spacecraft_mpc.destroy_node()
     rclpy.shutdown()
 
 
