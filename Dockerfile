@@ -158,6 +158,20 @@ RUN mv /opt/ros/overlay_ws/src/px4_mpc/px4_mpc/px4_mpc/cpg_solver.py /opt/ros/ov
 WORKDIR /opt/ros/overlay_ws/src/px4_mpc/px4_mpc/px4_mpc/osqp_solver
 RUN pip install -e .
 
+WORKDIR $OVERLAY_WS
+RUN . /opt/ros/$ROS_DISTRO/setup.sh && \
+    colcon build \
+      --parallel-workers 4 \
+      --packages-select \
+        demo_nodes_cpp \
+        demo_nodes_py \
+        px4_msgs \
+        #px4_ros_com \
+        px4_mpc \
+        mpc_msgs \
+        px4_offboard \
+      --mixin $OVERLAY_MIXINS
+
 # source entrypoint setup
 ENV OVERLAY_WS $OVERLAY_WS
 RUN sed --in-place --expression \

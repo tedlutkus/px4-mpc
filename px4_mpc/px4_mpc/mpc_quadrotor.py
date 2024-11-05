@@ -68,6 +68,7 @@ from jax import jit
 import jax
 jax.config.update('jax_platform_name', 'cpu')
 from cvxpygen import cpg
+import json
 
 def vector2PoseMsg(frame_id, position, attitude):
     pose_msg = PoseStamped()
