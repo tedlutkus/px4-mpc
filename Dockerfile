@@ -208,3 +208,4 @@ CMD ["ros2", "launch", "px4_mpc", "mpc_quadrotor_launch.py"]
 # scale_control: multiplier to joystick input in setting moving position target in front of drone to reach
 
 # docker run -d -v $(pwd)/mpc_config/:/mpc_config/ localhost:5000/px4_mpc
+# docker run -d -v $(pwd)/mpc_config:/mpc_config localhost:5000/px4_mpc_nn
