@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/example.c" "solver_code/CMakeFiles/example.dir/src/example.c.o" "gcc" "solver_code/CMakeFiles/example.dir/src/example.c.o.d"
+  "/Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/example.c" "solver_code/CMakeFiles/example.dir/src/example.c.o" "gcc" "solver_code/CMakeFiles/example.dir/src/example.c.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

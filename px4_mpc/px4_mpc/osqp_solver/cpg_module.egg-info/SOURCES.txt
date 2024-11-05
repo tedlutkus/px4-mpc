@@ -1,8 +1,0 @@
-LICENSE
-setup.py
-cpg_module.egg-info/PKG-INFO
-cpg_module.egg-info/SOURCES.txt
-cpg_module.egg-info/dependency_links.txt
-cpg_module.egg-info/requires.txt
-cpg_module.egg-info/top_level.txt
-cpp/src/cpg_module.cpp

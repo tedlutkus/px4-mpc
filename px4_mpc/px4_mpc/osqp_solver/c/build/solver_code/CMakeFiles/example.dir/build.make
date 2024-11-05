@@ -44,19 +44,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /home/ted/.local/lib/python3.10/site-packages/cmake/data/bin/cmake
+CMAKE_COMMAND = /opt/homebrew/Cellar/cmake/3.30.3/bin/cmake
 
 # The command to remove a file.
-RM = /home/ted/.local/lib/python3.10/site-packages/cmake/data/bin/cmake -E rm -f
+RM = /opt/homebrew/Cellar/cmake/3.30.3/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c
+CMAKE_SOURCE_DIR = /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build
+CMAKE_BINARY_DIR = /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build
 
 # Include any dependencies generated for this target.
 include solver_code/CMakeFiles/example.dir/depend.make
@@ -70,18 +70,18 @@ include solver_code/CMakeFiles/example.dir/progress.make
 include solver_code/CMakeFiles/example.dir/flags.make
 
 solver_code/CMakeFiles/example.dir/src/example.c.o: solver_code/CMakeFiles/example.dir/flags.make
-solver_code/CMakeFiles/example.dir/src/example.c.o: /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/example.c
+solver_code/CMakeFiles/example.dir/src/example.c.o: /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/example.c
 solver_code/CMakeFiles/example.dir/src/example.c.o: solver_code/CMakeFiles/example.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object solver_code/CMakeFiles/example.dir/src/example.c.o"
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT solver_code/CMakeFiles/example.dir/src/example.c.o -MF CMakeFiles/example.dir/src/example.c.o.d -o CMakeFiles/example.dir/src/example.c.o -c /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/example.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object solver_code/CMakeFiles/example.dir/src/example.c.o"
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT solver_code/CMakeFiles/example.dir/src/example.c.o -MF CMakeFiles/example.dir/src/example.c.o.d -o CMakeFiles/example.dir/src/example.c.o -c /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/example.c
 
 solver_code/CMakeFiles/example.dir/src/example.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/example.dir/src/example.c.i"
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/example.c > CMakeFiles/example.dir/src/example.c.i
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/example.c > CMakeFiles/example.dir/src/example.c.i
 
 solver_code/CMakeFiles/example.dir/src/example.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/example.dir/src/example.c.s"
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/example.c -o CMakeFiles/example.dir/src/example.c.s
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/example.c -o CMakeFiles/example.dir/src/example.c.s
 
 # Object files for target example
 example_OBJECTS = \
@@ -94,18 +94,18 @@ solver_code/out/example: solver_code/CMakeFiles/example.dir/src/example.c.o
 solver_code/out/example: solver_code/CMakeFiles/example.dir/build.make
 solver_code/out/example: solver_code/out/libemosqpstatic.a
 solver_code/out/example: solver_code/CMakeFiles/example.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable out/example"
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/example.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable out/example"
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/example.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 solver_code/CMakeFiles/example.dir/build: solver_code/out/example
 .PHONY : solver_code/CMakeFiles/example.dir/build
 
 solver_code/CMakeFiles/example.dir/clean:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && $(CMAKE_COMMAND) -P CMakeFiles/example.dir/cmake_clean.cmake
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && $(CMAKE_COMMAND) -P CMakeFiles/example.dir/cmake_clean.cmake
 .PHONY : solver_code/CMakeFiles/example.dir/clean
 
 solver_code/CMakeFiles/example.dir/depend:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code/CMakeFiles/example.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code/CMakeFiles/example.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : solver_code/CMakeFiles/example.dir/depend
 

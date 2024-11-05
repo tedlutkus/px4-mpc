@@ -32,6 +32,7 @@
 #
 ############################################################################
 
+#from px4_mpc.osqp_solver.cpg_solver import cpg_solve
 from px4_mpc.osqp_solver.cpg_solver import cpg_solve
 
 import rclpy
@@ -64,7 +65,6 @@ import cvxpy as cp
 from jax import jacfwd, jacrev
 import time
 from jax import jit
-import matplotlib.pyplot as plt
 import jax
 jax.config.update('jax_platform_name', 'cpu')
 from cvxpygen import cpg
@@ -86,7 +86,7 @@ def vector2PoseMsg(frame_id, position, attitude):
 @jit
 def drone_dynamics_eqn(x, u):
     J = jnp.array([0.03, 0.03, 0.06])
-    mass = 1.0#0.5
+    mass = 0.5
     g = jnp.array([0, 0, -9.81])
 
     angle = x[3:7]
@@ -208,8 +208,13 @@ class SpacecraftMPC(Node):
         umax = jnp.array([10.0, tmax, tmax, tmax])
 
         # Objective function
-        Q = jnp.diag(jnp.array([200, 200, 200, 0.1, 0.1, 0.1, 0.1, 1.0, 1.0, 1.0, 0.1, 0.1, 0.1]))
-        R = jnp.eye(4)*1.0
+        with open("/mpc_config/qr_weights.json", 'r') as file:
+            data = json.load(file)
+        Q = jnp.diag(jnp.array(data['Q']))
+        R = jnp.diag(jnp.array(data['R']))            
+
+        #Q = jnp.diag(jnp.array([200, 200, 200, 0.1, 0.1, 0.1, 0.1, 1.0, 1.0, 1.0, 0.1, 0.1, 0.1]))
+        #R = jnp.eye(4)*1.0
 
         # Initial and reference states
         x0 = jnp.array([1.0, -1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
@@ -330,7 +335,7 @@ class SpacecraftMPC(Node):
         torque_outputs_msg.timestamp = int(Clock().now().nanoseconds / 1000)
 
         thrust_outputs_msg.xyz = [0.0, 0.0, -u_pred[0]]
-        torque_outputs_msg.xyz = [u_pred[1]/(13.4), -u_pred[2]/(13.4), -u_pred[3]/(13.4)]
+        torque_outputs_msg.xyz = [u_pred[1], -u_pred[2], -u_pred[3]]
 
         self.publisher_thrust_setpoint.publish(thrust_outputs_msg)
         self.publisher_torque_setpoint.publish(torque_outputs_msg)

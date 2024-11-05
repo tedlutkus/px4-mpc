@@ -45,19 +45,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /home/ted/.local/lib/python3.10/site-packages/cmake/data/bin/cmake
+CMAKE_COMMAND = /opt/homebrew/Cellar/cmake/3.30.3/bin/cmake
 
 # The command to remove a file.
-RM = /home/ted/.local/lib/python3.10/site-packages/cmake/data/bin/cmake -E rm -f
+RM = /opt/homebrew/Cellar/cmake/3.30.3/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code
+CMAKE_SOURCE_DIR = /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/build
+CMAKE_BINARY_DIR = /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/build
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -118,14 +118,14 @@ src/osqp/clean:
 CMakeFiles/emosqpstatic.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/emosqpstatic.dir/build.make CMakeFiles/emosqpstatic.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/emosqpstatic.dir/build.make CMakeFiles/emosqpstatic.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12 "Built target emosqpstatic"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12 "Built target emosqpstatic"
 .PHONY : CMakeFiles/emosqpstatic.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/emosqpstatic.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/build/CMakeFiles 12
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/build/CMakeFiles 12
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/emosqpstatic.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/build/CMakeFiles 0
 .PHONY : CMakeFiles/emosqpstatic.dir/rule
 
 # Convenience name for target.
@@ -144,14 +144,14 @@ CMakeFiles/emosqpstatic.dir/clean:
 CMakeFiles/example.dir/all: CMakeFiles/emosqpstatic.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/example.dir/build.make CMakeFiles/example.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/example.dir/build.make CMakeFiles/example.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/build/CMakeFiles --progress-num=13,14 "Built target example"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/build/CMakeFiles --progress-num=13,14 "Built target example"
 .PHONY : CMakeFiles/example.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/example.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/build/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/build/CMakeFiles 14
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/example.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/build/CMakeFiles 0
 .PHONY : CMakeFiles/example.dir/rule
 
 # Convenience name for target.

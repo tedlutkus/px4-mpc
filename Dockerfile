@@ -137,10 +137,23 @@ WORKDIR /opt
 # Install dependencies for l4casadi
 # Install system dependencies
 RUN apt-get update && \
-    apt-get install -y python3-pip
-RUN pip install torch>=2.0 --index-url https://download.pytorch.org/whl/cpu
-RUN pip install setuptools==68.1 scikit-build>=0.17 cmake>=3.27 ninja>=1.11
-RUN pip install l4casadi --no-build-isolation
+    apt-get install -y python3-pip cmake libopenblas-dev
+#RUN pip install torch>=2.0 --index-url https://download.pytorch.org/whl/cpu
+#RUN pip install setuptools==68.1 scikit-build>=0.17 cmake>=3.27 ninja>=1.11
+#RUN pip install l4casadi --no-build-isolation
+RUN pip install ninja
+RUN pip install ecos==2.0.5
+RUN pip install setuptools
+RUN pip install numpy
+RUN pip install meson
+RUN pip install osqp scipy
+RUN pip install cvxpy
+RUN pip install jax
+RUN pip install cvxpygen
+
+WORKDIR /opt/ros/overlay_ws/src/px4_mpc/px4_mpc/px4_mpc
+RUN python3 build_osqp_solver.py
+
 
 # source entrypoint setup
 ENV OVERLAY_WS $OVERLAY_WS

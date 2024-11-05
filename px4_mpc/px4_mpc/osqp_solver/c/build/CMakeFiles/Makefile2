@@ -45,19 +45,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /home/ted/.local/lib/python3.10/site-packages/cmake/data/bin/cmake
+CMAKE_COMMAND = /opt/homebrew/Cellar/cmake/3.30.3/bin/cmake
 
 # The command to remove a file.
-RM = /home/ted/.local/lib/python3.10/site-packages/cmake/data/bin/cmake -E rm -f
+RM = /opt/homebrew/Cellar/cmake/3.30.3/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c
+CMAKE_SOURCE_DIR = /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build
+CMAKE_BINARY_DIR = /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -137,14 +137,14 @@ solver_code/src/osqp/clean:
 CMakeFiles/cpg_example.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpg_example.dir/build.make CMakeFiles/cpg_example.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpg_example.dir/build.make CMakeFiles/cpg_example.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles --progress-num=15,16,17,18,19,20,21,22,23,24,25,26,27,28,29 "Built target cpg_example"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles --progress-num=15,16,17,18,19,20,21,22,23,24,25,26,27,28,29 "Built target cpg_example"
 .PHONY : CMakeFiles/cpg_example.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/cpg_example.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles 15
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles 15
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/cpg_example.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles 0
 .PHONY : CMakeFiles/cpg_example.dir/rule
 
 # Convenience name for target.
@@ -163,14 +163,14 @@ CMakeFiles/cpg_example.dir/clean:
 CMakeFiles/cpg.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpg.dir/build.make CMakeFiles/cpg.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpg.dir/build.make CMakeFiles/cpg.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14 "Built target cpg"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14 "Built target cpg"
 .PHONY : CMakeFiles/cpg.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/cpg.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles 14
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/cpg.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles 0
 .PHONY : CMakeFiles/cpg.dir/rule
 
 # Convenience name for target.
@@ -189,14 +189,14 @@ CMakeFiles/cpg.dir/clean:
 solver_code/CMakeFiles/emosqpstatic.dir/all:
 	$(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/depend
 	$(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles --progress-num=30,31,32,33,34,35,36,37,38,39,40,41 "Built target emosqpstatic"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles --progress-num=30,31,32,33,34,35,36,37,38,39,40,41 "Built target emosqpstatic"
 .PHONY : solver_code/CMakeFiles/emosqpstatic.dir/all
 
 # Build rule for subdir invocation for target.
 solver_code/CMakeFiles/emosqpstatic.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles 12
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles 12
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 solver_code/CMakeFiles/emosqpstatic.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles 0
 .PHONY : solver_code/CMakeFiles/emosqpstatic.dir/rule
 
 # Convenience name for target.
@@ -215,14 +215,14 @@ solver_code/CMakeFiles/emosqpstatic.dir/clean:
 solver_code/CMakeFiles/example.dir/all: solver_code/CMakeFiles/emosqpstatic.dir/all
 	$(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/example.dir/build.make solver_code/CMakeFiles/example.dir/depend
 	$(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/example.dir/build.make solver_code/CMakeFiles/example.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles --progress-num=42,43 "Built target example"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles --progress-num=42,43 "Built target example"
 .PHONY : solver_code/CMakeFiles/example.dir/all
 
 # Build rule for subdir invocation for target.
 solver_code/CMakeFiles/example.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles 14
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles 14
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 solver_code/CMakeFiles/example.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles 0
 .PHONY : solver_code/CMakeFiles/example.dir/rule
 
 # Convenience name for target.

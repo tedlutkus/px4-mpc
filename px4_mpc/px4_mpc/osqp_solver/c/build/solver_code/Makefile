@@ -48,27 +48,27 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /home/ted/.local/lib/python3.10/site-packages/cmake/data/bin/cmake
+CMAKE_COMMAND = /opt/homebrew/Cellar/cmake/3.30.3/bin/cmake
 
 # The command to remove a file.
-RM = /home/ted/.local/lib/python3.10/site-packages/cmake/data/bin/cmake -E rm -f
+RM = /opt/homebrew/Cellar/cmake/3.30.3/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c
+CMAKE_SOURCE_DIR = /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build
+CMAKE_BINARY_DIR = /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build
 
 #=============================================================================
 # Targets provided globally by CMake.
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "No interactive CMake dialog available..."
-	/home/ted/.local/lib/python3.10/site-packages/cmake/data/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake cache editor..."
+	/opt/homebrew/Cellar/cmake/3.30.3/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -78,7 +78,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake to regenerate build system..."
-	/home/ted/.local/lib/python3.10/site-packages/cmake/data/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/opt/homebrew/Cellar/cmake/3.30.3/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -87,14 +87,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code//CMakeFiles/progress.marks
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 solver_code/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles 0
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(CMAKE_COMMAND) -E cmake_progress_start /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code//CMakeFiles/progress.marks
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 solver_code/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 solver_code/clean
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 solver_code/clean
 .PHONY : clean
 
 # The main clean target
@@ -103,22 +103,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 solver_code/preinstall
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 solver_code/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 solver_code/preinstall
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 solver_code/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 solver_code/CMakeFiles/emosqpstatic.dir/rule:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 solver_code/CMakeFiles/emosqpstatic.dir/rule
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 solver_code/CMakeFiles/emosqpstatic.dir/rule
 .PHONY : solver_code/CMakeFiles/emosqpstatic.dir/rule
 
 # Convenience name for target.
@@ -127,12 +127,12 @@ emosqpstatic: solver_code/CMakeFiles/emosqpstatic.dir/rule
 
 # fast build rule for target.
 emosqpstatic/fast:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/build
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/build
 .PHONY : emosqpstatic/fast
 
 # Convenience name for target.
 solver_code/CMakeFiles/example.dir/rule:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 solver_code/CMakeFiles/example.dir/rule
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 solver_code/CMakeFiles/example.dir/rule
 .PHONY : solver_code/CMakeFiles/example.dir/rule
 
 # Convenience name for target.
@@ -141,7 +141,7 @@ example: solver_code/CMakeFiles/example.dir/rule
 
 # fast build rule for target.
 example/fast:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/example.dir/build.make solver_code/CMakeFiles/example.dir/build
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/example.dir/build.make solver_code/CMakeFiles/example.dir/build
 .PHONY : example/fast
 
 src/example.o: src/example.c.o
@@ -149,7 +149,7 @@ src/example.o: src/example.c.o
 
 # target to build an object file
 src/example.c.o:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/example.dir/build.make solver_code/CMakeFiles/example.dir/src/example.c.o
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/example.dir/build.make solver_code/CMakeFiles/example.dir/src/example.c.o
 .PHONY : src/example.c.o
 
 src/example.i: src/example.c.i
@@ -157,7 +157,7 @@ src/example.i: src/example.c.i
 
 # target to preprocess a source file
 src/example.c.i:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/example.dir/build.make solver_code/CMakeFiles/example.dir/src/example.c.i
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/example.dir/build.make solver_code/CMakeFiles/example.dir/src/example.c.i
 .PHONY : src/example.c.i
 
 src/example.s: src/example.c.s
@@ -165,7 +165,7 @@ src/example.s: src/example.c.s
 
 # target to generate assembly for a file
 src/example.c.s:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/example.dir/build.make solver_code/CMakeFiles/example.dir/src/example.c.s
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/example.dir/build.make solver_code/CMakeFiles/example.dir/src/example.c.s
 .PHONY : src/example.c.s
 
 src/osqp/auxil.o: src/osqp/auxil.c.o
@@ -173,7 +173,7 @@ src/osqp/auxil.o: src/osqp/auxil.c.o
 
 # target to build an object file
 src/osqp/auxil.c.o:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/auxil.c.o
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/auxil.c.o
 .PHONY : src/osqp/auxil.c.o
 
 src/osqp/auxil.i: src/osqp/auxil.c.i
@@ -181,7 +181,7 @@ src/osqp/auxil.i: src/osqp/auxil.c.i
 
 # target to preprocess a source file
 src/osqp/auxil.c.i:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/auxil.c.i
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/auxil.c.i
 .PHONY : src/osqp/auxil.c.i
 
 src/osqp/auxil.s: src/osqp/auxil.c.s
@@ -189,7 +189,7 @@ src/osqp/auxil.s: src/osqp/auxil.c.s
 
 # target to generate assembly for a file
 src/osqp/auxil.c.s:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/auxil.c.s
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/auxil.c.s
 .PHONY : src/osqp/auxil.c.s
 
 src/osqp/error.o: src/osqp/error.c.o
@@ -197,7 +197,7 @@ src/osqp/error.o: src/osqp/error.c.o
 
 # target to build an object file
 src/osqp/error.c.o:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/error.c.o
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/error.c.o
 .PHONY : src/osqp/error.c.o
 
 src/osqp/error.i: src/osqp/error.c.i
@@ -205,7 +205,7 @@ src/osqp/error.i: src/osqp/error.c.i
 
 # target to preprocess a source file
 src/osqp/error.c.i:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/error.c.i
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/error.c.i
 .PHONY : src/osqp/error.c.i
 
 src/osqp/error.s: src/osqp/error.c.s
@@ -213,7 +213,7 @@ src/osqp/error.s: src/osqp/error.c.s
 
 # target to generate assembly for a file
 src/osqp/error.c.s:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/error.c.s
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/error.c.s
 .PHONY : src/osqp/error.c.s
 
 src/osqp/kkt.o: src/osqp/kkt.c.o
@@ -221,7 +221,7 @@ src/osqp/kkt.o: src/osqp/kkt.c.o
 
 # target to build an object file
 src/osqp/kkt.c.o:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/kkt.c.o
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/kkt.c.o
 .PHONY : src/osqp/kkt.c.o
 
 src/osqp/kkt.i: src/osqp/kkt.c.i
@@ -229,7 +229,7 @@ src/osqp/kkt.i: src/osqp/kkt.c.i
 
 # target to preprocess a source file
 src/osqp/kkt.c.i:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/kkt.c.i
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/kkt.c.i
 .PHONY : src/osqp/kkt.c.i
 
 src/osqp/kkt.s: src/osqp/kkt.c.s
@@ -237,7 +237,7 @@ src/osqp/kkt.s: src/osqp/kkt.c.s
 
 # target to generate assembly for a file
 src/osqp/kkt.c.s:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/kkt.c.s
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/kkt.c.s
 .PHONY : src/osqp/kkt.c.s
 
 src/osqp/lin_alg.o: src/osqp/lin_alg.c.o
@@ -245,7 +245,7 @@ src/osqp/lin_alg.o: src/osqp/lin_alg.c.o
 
 # target to build an object file
 src/osqp/lin_alg.c.o:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/lin_alg.c.o
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/lin_alg.c.o
 .PHONY : src/osqp/lin_alg.c.o
 
 src/osqp/lin_alg.i: src/osqp/lin_alg.c.i
@@ -253,7 +253,7 @@ src/osqp/lin_alg.i: src/osqp/lin_alg.c.i
 
 # target to preprocess a source file
 src/osqp/lin_alg.c.i:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/lin_alg.c.i
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/lin_alg.c.i
 .PHONY : src/osqp/lin_alg.c.i
 
 src/osqp/lin_alg.s: src/osqp/lin_alg.c.s
@@ -261,7 +261,7 @@ src/osqp/lin_alg.s: src/osqp/lin_alg.c.s
 
 # target to generate assembly for a file
 src/osqp/lin_alg.c.s:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/lin_alg.c.s
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/lin_alg.c.s
 .PHONY : src/osqp/lin_alg.c.s
 
 src/osqp/osqp.o: src/osqp/osqp.c.o
@@ -269,7 +269,7 @@ src/osqp/osqp.o: src/osqp/osqp.c.o
 
 # target to build an object file
 src/osqp/osqp.c.o:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/osqp.c.o
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/osqp.c.o
 .PHONY : src/osqp/osqp.c.o
 
 src/osqp/osqp.i: src/osqp/osqp.c.i
@@ -277,7 +277,7 @@ src/osqp/osqp.i: src/osqp/osqp.c.i
 
 # target to preprocess a source file
 src/osqp/osqp.c.i:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/osqp.c.i
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/osqp.c.i
 .PHONY : src/osqp/osqp.c.i
 
 src/osqp/osqp.s: src/osqp/osqp.c.s
@@ -285,7 +285,7 @@ src/osqp/osqp.s: src/osqp/osqp.c.s
 
 # target to generate assembly for a file
 src/osqp/osqp.c.s:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/osqp.c.s
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/osqp.c.s
 .PHONY : src/osqp/osqp.c.s
 
 src/osqp/proj.o: src/osqp/proj.c.o
@@ -293,7 +293,7 @@ src/osqp/proj.o: src/osqp/proj.c.o
 
 # target to build an object file
 src/osqp/proj.c.o:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/proj.c.o
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/proj.c.o
 .PHONY : src/osqp/proj.c.o
 
 src/osqp/proj.i: src/osqp/proj.c.i
@@ -301,7 +301,7 @@ src/osqp/proj.i: src/osqp/proj.c.i
 
 # target to preprocess a source file
 src/osqp/proj.c.i:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/proj.c.i
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/proj.c.i
 .PHONY : src/osqp/proj.c.i
 
 src/osqp/proj.s: src/osqp/proj.c.s
@@ -309,7 +309,7 @@ src/osqp/proj.s: src/osqp/proj.c.s
 
 # target to generate assembly for a file
 src/osqp/proj.c.s:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/proj.c.s
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/proj.c.s
 .PHONY : src/osqp/proj.c.s
 
 src/osqp/qdldl.o: src/osqp/qdldl.c.o
@@ -317,7 +317,7 @@ src/osqp/qdldl.o: src/osqp/qdldl.c.o
 
 # target to build an object file
 src/osqp/qdldl.c.o:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/qdldl.c.o
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/qdldl.c.o
 .PHONY : src/osqp/qdldl.c.o
 
 src/osqp/qdldl.i: src/osqp/qdldl.c.i
@@ -325,7 +325,7 @@ src/osqp/qdldl.i: src/osqp/qdldl.c.i
 
 # target to preprocess a source file
 src/osqp/qdldl.c.i:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/qdldl.c.i
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/qdldl.c.i
 .PHONY : src/osqp/qdldl.c.i
 
 src/osqp/qdldl.s: src/osqp/qdldl.c.s
@@ -333,7 +333,7 @@ src/osqp/qdldl.s: src/osqp/qdldl.c.s
 
 # target to generate assembly for a file
 src/osqp/qdldl.c.s:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/qdldl.c.s
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/qdldl.c.s
 .PHONY : src/osqp/qdldl.c.s
 
 src/osqp/qdldl_interface.o: src/osqp/qdldl_interface.c.o
@@ -341,7 +341,7 @@ src/osqp/qdldl_interface.o: src/osqp/qdldl_interface.c.o
 
 # target to build an object file
 src/osqp/qdldl_interface.c.o:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/qdldl_interface.c.o
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/qdldl_interface.c.o
 .PHONY : src/osqp/qdldl_interface.c.o
 
 src/osqp/qdldl_interface.i: src/osqp/qdldl_interface.c.i
@@ -349,7 +349,7 @@ src/osqp/qdldl_interface.i: src/osqp/qdldl_interface.c.i
 
 # target to preprocess a source file
 src/osqp/qdldl_interface.c.i:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/qdldl_interface.c.i
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/qdldl_interface.c.i
 .PHONY : src/osqp/qdldl_interface.c.i
 
 src/osqp/qdldl_interface.s: src/osqp/qdldl_interface.c.s
@@ -357,7 +357,7 @@ src/osqp/qdldl_interface.s: src/osqp/qdldl_interface.c.s
 
 # target to generate assembly for a file
 src/osqp/qdldl_interface.c.s:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/qdldl_interface.c.s
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/qdldl_interface.c.s
 .PHONY : src/osqp/qdldl_interface.c.s
 
 src/osqp/scaling.o: src/osqp/scaling.c.o
@@ -365,7 +365,7 @@ src/osqp/scaling.o: src/osqp/scaling.c.o
 
 # target to build an object file
 src/osqp/scaling.c.o:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/scaling.c.o
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/scaling.c.o
 .PHONY : src/osqp/scaling.c.o
 
 src/osqp/scaling.i: src/osqp/scaling.c.i
@@ -373,7 +373,7 @@ src/osqp/scaling.i: src/osqp/scaling.c.i
 
 # target to preprocess a source file
 src/osqp/scaling.c.i:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/scaling.c.i
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/scaling.c.i
 .PHONY : src/osqp/scaling.c.i
 
 src/osqp/scaling.s: src/osqp/scaling.c.s
@@ -381,7 +381,7 @@ src/osqp/scaling.s: src/osqp/scaling.c.s
 
 # target to generate assembly for a file
 src/osqp/scaling.c.s:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/scaling.c.s
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/scaling.c.s
 .PHONY : src/osqp/scaling.c.s
 
 src/osqp/util.o: src/osqp/util.c.o
@@ -389,7 +389,7 @@ src/osqp/util.o: src/osqp/util.c.o
 
 # target to build an object file
 src/osqp/util.c.o:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/util.c.o
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/util.c.o
 .PHONY : src/osqp/util.c.o
 
 src/osqp/util.i: src/osqp/util.c.i
@@ -397,7 +397,7 @@ src/osqp/util.i: src/osqp/util.c.i
 
 # target to preprocess a source file
 src/osqp/util.c.i:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/util.c.i
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/util.c.i
 .PHONY : src/osqp/util.c.i
 
 src/osqp/util.s: src/osqp/util.c.s
@@ -405,7 +405,7 @@ src/osqp/util.s: src/osqp/util.c.s
 
 # target to generate assembly for a file
 src/osqp/util.c.s:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/util.c.s
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/util.c.s
 .PHONY : src/osqp/util.c.s
 
 src/osqp/workspace.o: src/osqp/workspace.c.o
@@ -413,7 +413,7 @@ src/osqp/workspace.o: src/osqp/workspace.c.o
 
 # target to build an object file
 src/osqp/workspace.c.o:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/workspace.c.o
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/workspace.c.o
 .PHONY : src/osqp/workspace.c.o
 
 src/osqp/workspace.i: src/osqp/workspace.c.i
@@ -421,7 +421,7 @@ src/osqp/workspace.i: src/osqp/workspace.c.i
 
 # target to preprocess a source file
 src/osqp/workspace.c.i:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/workspace.c.i
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/workspace.c.i
 .PHONY : src/osqp/workspace.c.i
 
 src/osqp/workspace.s: src/osqp/workspace.c.s
@@ -429,7 +429,7 @@ src/osqp/workspace.s: src/osqp/workspace.c.s
 
 # target to generate assembly for a file
 src/osqp/workspace.c.s:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/workspace.c.s
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f solver_code/CMakeFiles/emosqpstatic.dir/build.make solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/workspace.c.s
 .PHONY : src/osqp/workspace.c.s
 
 # Help Target
@@ -489,6 +489,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

@@ -48,27 +48,27 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /home/ted/.local/lib/python3.10/site-packages/cmake/data/bin/cmake
+CMAKE_COMMAND = /opt/homebrew/Cellar/cmake/3.30.3/bin/cmake
 
 # The command to remove a file.
-RM = /home/ted/.local/lib/python3.10/site-packages/cmake/data/bin/cmake -E rm -f
+RM = /opt/homebrew/Cellar/cmake/3.30.3/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c
+CMAKE_SOURCE_DIR = /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build
+CMAKE_BINARY_DIR = /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build
 
 #=============================================================================
 # Targets provided globally by CMake.
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "No interactive CMake dialog available..."
-	/home/ted/.local/lib/python3.10/site-packages/cmake/data/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake cache editor..."
+	/opt/homebrew/Cellar/cmake/3.30.3/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -78,7 +78,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake to regenerate build system..."
-	/home/ted/.local/lib/python3.10/site-packages/cmake/data/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/opt/homebrew/Cellar/cmake/3.30.3/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -87,14 +87,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code/src/osqp//CMakeFiles/progress.marks
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 solver_code/src/osqp/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles 0
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(CMAKE_COMMAND) -E cmake_progress_start /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code/src/osqp//CMakeFiles/progress.marks
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 solver_code/src/osqp/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 solver_code/src/osqp/clean
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 solver_code/src/osqp/clean
 .PHONY : clean
 
 # The main clean target
@@ -103,17 +103,17 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 solver_code/src/osqp/preinstall
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 solver_code/src/osqp/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 solver_code/src/osqp/preinstall
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 solver_code/src/osqp/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Help Target
@@ -135,6 +135,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

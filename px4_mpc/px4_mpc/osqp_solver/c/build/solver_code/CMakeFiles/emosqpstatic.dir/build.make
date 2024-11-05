@@ -44,19 +44,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /home/ted/.local/lib/python3.10/site-packages/cmake/data/bin/cmake
+CMAKE_COMMAND = /opt/homebrew/Cellar/cmake/3.30.3/bin/cmake
 
 # The command to remove a file.
-RM = /home/ted/.local/lib/python3.10/site-packages/cmake/data/bin/cmake -E rm -f
+RM = /opt/homebrew/Cellar/cmake/3.30.3/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c
+CMAKE_SOURCE_DIR = /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build
+CMAKE_BINARY_DIR = /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build
 
 # Include any dependencies generated for this target.
 include solver_code/CMakeFiles/emosqpstatic.dir/depend.make
@@ -70,158 +70,158 @@ include solver_code/CMakeFiles/emosqpstatic.dir/progress.make
 include solver_code/CMakeFiles/emosqpstatic.dir/flags.make
 
 solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/auxil.c.o: solver_code/CMakeFiles/emosqpstatic.dir/flags.make
-solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/auxil.c.o: /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/auxil.c
+solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/auxil.c.o: /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/auxil.c
 solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/auxil.c.o: solver_code/CMakeFiles/emosqpstatic.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/auxil.c.o"
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/auxil.c.o -MF CMakeFiles/emosqpstatic.dir/src/osqp/auxil.c.o.d -o CMakeFiles/emosqpstatic.dir/src/osqp/auxil.c.o -c /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/auxil.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/auxil.c.o"
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/auxil.c.o -MF CMakeFiles/emosqpstatic.dir/src/osqp/auxil.c.o.d -o CMakeFiles/emosqpstatic.dir/src/osqp/auxil.c.o -c /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/auxil.c
 
 solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/auxil.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/emosqpstatic.dir/src/osqp/auxil.c.i"
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/auxil.c > CMakeFiles/emosqpstatic.dir/src/osqp/auxil.c.i
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/auxil.c > CMakeFiles/emosqpstatic.dir/src/osqp/auxil.c.i
 
 solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/auxil.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/emosqpstatic.dir/src/osqp/auxil.c.s"
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/auxil.c -o CMakeFiles/emosqpstatic.dir/src/osqp/auxil.c.s
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/auxil.c -o CMakeFiles/emosqpstatic.dir/src/osqp/auxil.c.s
 
 solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/error.c.o: solver_code/CMakeFiles/emosqpstatic.dir/flags.make
-solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/error.c.o: /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/error.c
+solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/error.c.o: /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/error.c
 solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/error.c.o: solver_code/CMakeFiles/emosqpstatic.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/error.c.o"
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/error.c.o -MF CMakeFiles/emosqpstatic.dir/src/osqp/error.c.o.d -o CMakeFiles/emosqpstatic.dir/src/osqp/error.c.o -c /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/error.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/error.c.o"
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/error.c.o -MF CMakeFiles/emosqpstatic.dir/src/osqp/error.c.o.d -o CMakeFiles/emosqpstatic.dir/src/osqp/error.c.o -c /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/error.c
 
 solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/error.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/emosqpstatic.dir/src/osqp/error.c.i"
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/error.c > CMakeFiles/emosqpstatic.dir/src/osqp/error.c.i
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/error.c > CMakeFiles/emosqpstatic.dir/src/osqp/error.c.i
 
 solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/error.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/emosqpstatic.dir/src/osqp/error.c.s"
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/error.c -o CMakeFiles/emosqpstatic.dir/src/osqp/error.c.s
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/error.c -o CMakeFiles/emosqpstatic.dir/src/osqp/error.c.s
 
 solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/lin_alg.c.o: solver_code/CMakeFiles/emosqpstatic.dir/flags.make
-solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/lin_alg.c.o: /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/lin_alg.c
+solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/lin_alg.c.o: /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/lin_alg.c
 solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/lin_alg.c.o: solver_code/CMakeFiles/emosqpstatic.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/lin_alg.c.o"
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/lin_alg.c.o -MF CMakeFiles/emosqpstatic.dir/src/osqp/lin_alg.c.o.d -o CMakeFiles/emosqpstatic.dir/src/osqp/lin_alg.c.o -c /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/lin_alg.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/lin_alg.c.o"
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/lin_alg.c.o -MF CMakeFiles/emosqpstatic.dir/src/osqp/lin_alg.c.o.d -o CMakeFiles/emosqpstatic.dir/src/osqp/lin_alg.c.o -c /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/lin_alg.c
 
 solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/lin_alg.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/emosqpstatic.dir/src/osqp/lin_alg.c.i"
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/lin_alg.c > CMakeFiles/emosqpstatic.dir/src/osqp/lin_alg.c.i
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/lin_alg.c > CMakeFiles/emosqpstatic.dir/src/osqp/lin_alg.c.i
 
 solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/lin_alg.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/emosqpstatic.dir/src/osqp/lin_alg.c.s"
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/lin_alg.c -o CMakeFiles/emosqpstatic.dir/src/osqp/lin_alg.c.s
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/lin_alg.c -o CMakeFiles/emosqpstatic.dir/src/osqp/lin_alg.c.s
 
 solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/osqp.c.o: solver_code/CMakeFiles/emosqpstatic.dir/flags.make
-solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/osqp.c.o: /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/osqp.c
+solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/osqp.c.o: /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/osqp.c
 solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/osqp.c.o: solver_code/CMakeFiles/emosqpstatic.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/osqp.c.o"
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/osqp.c.o -MF CMakeFiles/emosqpstatic.dir/src/osqp/osqp.c.o.d -o CMakeFiles/emosqpstatic.dir/src/osqp/osqp.c.o -c /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/osqp.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/osqp.c.o"
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/osqp.c.o -MF CMakeFiles/emosqpstatic.dir/src/osqp/osqp.c.o.d -o CMakeFiles/emosqpstatic.dir/src/osqp/osqp.c.o -c /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/osqp.c
 
 solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/osqp.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/emosqpstatic.dir/src/osqp/osqp.c.i"
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/osqp.c > CMakeFiles/emosqpstatic.dir/src/osqp/osqp.c.i
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/osqp.c > CMakeFiles/emosqpstatic.dir/src/osqp/osqp.c.i
 
 solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/osqp.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/emosqpstatic.dir/src/osqp/osqp.c.s"
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/osqp.c -o CMakeFiles/emosqpstatic.dir/src/osqp/osqp.c.s
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/osqp.c -o CMakeFiles/emosqpstatic.dir/src/osqp/osqp.c.s
 
 solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/proj.c.o: solver_code/CMakeFiles/emosqpstatic.dir/flags.make
-solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/proj.c.o: /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/proj.c
+solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/proj.c.o: /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/proj.c
 solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/proj.c.o: solver_code/CMakeFiles/emosqpstatic.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/proj.c.o"
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/proj.c.o -MF CMakeFiles/emosqpstatic.dir/src/osqp/proj.c.o.d -o CMakeFiles/emosqpstatic.dir/src/osqp/proj.c.o -c /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/proj.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/proj.c.o"
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/proj.c.o -MF CMakeFiles/emosqpstatic.dir/src/osqp/proj.c.o.d -o CMakeFiles/emosqpstatic.dir/src/osqp/proj.c.o -c /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/proj.c
 
 solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/proj.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/emosqpstatic.dir/src/osqp/proj.c.i"
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/proj.c > CMakeFiles/emosqpstatic.dir/src/osqp/proj.c.i
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/proj.c > CMakeFiles/emosqpstatic.dir/src/osqp/proj.c.i
 
 solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/proj.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/emosqpstatic.dir/src/osqp/proj.c.s"
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/proj.c -o CMakeFiles/emosqpstatic.dir/src/osqp/proj.c.s
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/proj.c -o CMakeFiles/emosqpstatic.dir/src/osqp/proj.c.s
 
 solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/scaling.c.o: solver_code/CMakeFiles/emosqpstatic.dir/flags.make
-solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/scaling.c.o: /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/scaling.c
+solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/scaling.c.o: /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/scaling.c
 solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/scaling.c.o: solver_code/CMakeFiles/emosqpstatic.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/scaling.c.o"
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/scaling.c.o -MF CMakeFiles/emosqpstatic.dir/src/osqp/scaling.c.o.d -o CMakeFiles/emosqpstatic.dir/src/osqp/scaling.c.o -c /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/scaling.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/scaling.c.o"
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/scaling.c.o -MF CMakeFiles/emosqpstatic.dir/src/osqp/scaling.c.o.d -o CMakeFiles/emosqpstatic.dir/src/osqp/scaling.c.o -c /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/scaling.c
 
 solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/scaling.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/emosqpstatic.dir/src/osqp/scaling.c.i"
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/scaling.c > CMakeFiles/emosqpstatic.dir/src/osqp/scaling.c.i
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/scaling.c > CMakeFiles/emosqpstatic.dir/src/osqp/scaling.c.i
 
 solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/scaling.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/emosqpstatic.dir/src/osqp/scaling.c.s"
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/scaling.c -o CMakeFiles/emosqpstatic.dir/src/osqp/scaling.c.s
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/scaling.c -o CMakeFiles/emosqpstatic.dir/src/osqp/scaling.c.s
 
 solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/util.c.o: solver_code/CMakeFiles/emosqpstatic.dir/flags.make
-solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/util.c.o: /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/util.c
+solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/util.c.o: /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/util.c
 solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/util.c.o: solver_code/CMakeFiles/emosqpstatic.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/util.c.o"
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/util.c.o -MF CMakeFiles/emosqpstatic.dir/src/osqp/util.c.o.d -o CMakeFiles/emosqpstatic.dir/src/osqp/util.c.o -c /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/util.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/util.c.o"
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/util.c.o -MF CMakeFiles/emosqpstatic.dir/src/osqp/util.c.o.d -o CMakeFiles/emosqpstatic.dir/src/osqp/util.c.o -c /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/util.c
 
 solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/util.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/emosqpstatic.dir/src/osqp/util.c.i"
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/util.c > CMakeFiles/emosqpstatic.dir/src/osqp/util.c.i
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/util.c > CMakeFiles/emosqpstatic.dir/src/osqp/util.c.i
 
 solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/util.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/emosqpstatic.dir/src/osqp/util.c.s"
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/util.c -o CMakeFiles/emosqpstatic.dir/src/osqp/util.c.s
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/util.c -o CMakeFiles/emosqpstatic.dir/src/osqp/util.c.s
 
 solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/kkt.c.o: solver_code/CMakeFiles/emosqpstatic.dir/flags.make
-solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/kkt.c.o: /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/kkt.c
+solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/kkt.c.o: /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/kkt.c
 solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/kkt.c.o: solver_code/CMakeFiles/emosqpstatic.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/kkt.c.o"
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/kkt.c.o -MF CMakeFiles/emosqpstatic.dir/src/osqp/kkt.c.o.d -o CMakeFiles/emosqpstatic.dir/src/osqp/kkt.c.o -c /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/kkt.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/kkt.c.o"
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/kkt.c.o -MF CMakeFiles/emosqpstatic.dir/src/osqp/kkt.c.o.d -o CMakeFiles/emosqpstatic.dir/src/osqp/kkt.c.o -c /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/kkt.c
 
 solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/kkt.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/emosqpstatic.dir/src/osqp/kkt.c.i"
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/kkt.c > CMakeFiles/emosqpstatic.dir/src/osqp/kkt.c.i
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/kkt.c > CMakeFiles/emosqpstatic.dir/src/osqp/kkt.c.i
 
 solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/kkt.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/emosqpstatic.dir/src/osqp/kkt.c.s"
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/kkt.c -o CMakeFiles/emosqpstatic.dir/src/osqp/kkt.c.s
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/kkt.c -o CMakeFiles/emosqpstatic.dir/src/osqp/kkt.c.s
 
 solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/workspace.c.o: solver_code/CMakeFiles/emosqpstatic.dir/flags.make
-solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/workspace.c.o: /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/workspace.c
+solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/workspace.c.o: /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/workspace.c
 solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/workspace.c.o: solver_code/CMakeFiles/emosqpstatic.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/workspace.c.o"
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/workspace.c.o -MF CMakeFiles/emosqpstatic.dir/src/osqp/workspace.c.o.d -o CMakeFiles/emosqpstatic.dir/src/osqp/workspace.c.o -c /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/workspace.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/workspace.c.o"
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/workspace.c.o -MF CMakeFiles/emosqpstatic.dir/src/osqp/workspace.c.o.d -o CMakeFiles/emosqpstatic.dir/src/osqp/workspace.c.o -c /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/workspace.c
 
 solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/workspace.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/emosqpstatic.dir/src/osqp/workspace.c.i"
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/workspace.c > CMakeFiles/emosqpstatic.dir/src/osqp/workspace.c.i
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/workspace.c > CMakeFiles/emosqpstatic.dir/src/osqp/workspace.c.i
 
 solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/workspace.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/emosqpstatic.dir/src/osqp/workspace.c.s"
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/workspace.c -o CMakeFiles/emosqpstatic.dir/src/osqp/workspace.c.s
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/workspace.c -o CMakeFiles/emosqpstatic.dir/src/osqp/workspace.c.s
 
 solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/qdldl.c.o: solver_code/CMakeFiles/emosqpstatic.dir/flags.make
-solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/qdldl.c.o: /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/qdldl.c
+solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/qdldl.c.o: /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/qdldl.c
 solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/qdldl.c.o: solver_code/CMakeFiles/emosqpstatic.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building C object solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/qdldl.c.o"
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/qdldl.c.o -MF CMakeFiles/emosqpstatic.dir/src/osqp/qdldl.c.o.d -o CMakeFiles/emosqpstatic.dir/src/osqp/qdldl.c.o -c /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/qdldl.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building C object solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/qdldl.c.o"
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/qdldl.c.o -MF CMakeFiles/emosqpstatic.dir/src/osqp/qdldl.c.o.d -o CMakeFiles/emosqpstatic.dir/src/osqp/qdldl.c.o -c /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/qdldl.c
 
 solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/qdldl.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/emosqpstatic.dir/src/osqp/qdldl.c.i"
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/qdldl.c > CMakeFiles/emosqpstatic.dir/src/osqp/qdldl.c.i
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/qdldl.c > CMakeFiles/emosqpstatic.dir/src/osqp/qdldl.c.i
 
 solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/qdldl.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/emosqpstatic.dir/src/osqp/qdldl.c.s"
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/qdldl.c -o CMakeFiles/emosqpstatic.dir/src/osqp/qdldl.c.s
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/qdldl.c -o CMakeFiles/emosqpstatic.dir/src/osqp/qdldl.c.s
 
 solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/qdldl_interface.c.o: solver_code/CMakeFiles/emosqpstatic.dir/flags.make
-solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/qdldl_interface.c.o: /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/qdldl_interface.c
+solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/qdldl_interface.c.o: /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/qdldl_interface.c
 solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/qdldl_interface.c.o: solver_code/CMakeFiles/emosqpstatic.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building C object solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/qdldl_interface.c.o"
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/qdldl_interface.c.o -MF CMakeFiles/emosqpstatic.dir/src/osqp/qdldl_interface.c.o.d -o CMakeFiles/emosqpstatic.dir/src/osqp/qdldl_interface.c.o -c /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/qdldl_interface.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building C object solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/qdldl_interface.c.o"
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/qdldl_interface.c.o -MF CMakeFiles/emosqpstatic.dir/src/osqp/qdldl_interface.c.o.d -o CMakeFiles/emosqpstatic.dir/src/osqp/qdldl_interface.c.o -c /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/qdldl_interface.c
 
 solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/qdldl_interface.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/emosqpstatic.dir/src/osqp/qdldl_interface.c.i"
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/qdldl_interface.c > CMakeFiles/emosqpstatic.dir/src/osqp/qdldl_interface.c.i
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/qdldl_interface.c > CMakeFiles/emosqpstatic.dir/src/osqp/qdldl_interface.c.i
 
 solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/qdldl_interface.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/emosqpstatic.dir/src/osqp/qdldl_interface.c.s"
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/qdldl_interface.c -o CMakeFiles/emosqpstatic.dir/src/osqp/qdldl_interface.c.s
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/src/osqp/qdldl_interface.c -o CMakeFiles/emosqpstatic.dir/src/osqp/qdldl_interface.c.s
 
 # Object files for target emosqpstatic
 emosqpstatic_OBJECTS = \
@@ -253,19 +253,19 @@ solver_code/out/libemosqpstatic.a: solver_code/CMakeFiles/emosqpstatic.dir/src/o
 solver_code/out/libemosqpstatic.a: solver_code/CMakeFiles/emosqpstatic.dir/src/osqp/qdldl_interface.c.o
 solver_code/out/libemosqpstatic.a: solver_code/CMakeFiles/emosqpstatic.dir/build.make
 solver_code/out/libemosqpstatic.a: solver_code/CMakeFiles/emosqpstatic.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking C static library out/libemosqpstatic.a"
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && $(CMAKE_COMMAND) -P CMakeFiles/emosqpstatic.dir/cmake_clean_target.cmake
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/emosqpstatic.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking C static library out/libemosqpstatic.a"
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && $(CMAKE_COMMAND) -P CMakeFiles/emosqpstatic.dir/cmake_clean_target.cmake
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/emosqpstatic.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 solver_code/CMakeFiles/emosqpstatic.dir/build: solver_code/out/libemosqpstatic.a
 .PHONY : solver_code/CMakeFiles/emosqpstatic.dir/build
 
 solver_code/CMakeFiles/emosqpstatic.dir/clean:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && $(CMAKE_COMMAND) -P CMakeFiles/emosqpstatic.dir/cmake_clean.cmake
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code && $(CMAKE_COMMAND) -P CMakeFiles/emosqpstatic.dir/cmake_clean.cmake
 .PHONY : solver_code/CMakeFiles/emosqpstatic.dir/clean
 
 solver_code/CMakeFiles/emosqpstatic.dir/depend:
-	cd /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code /home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code/CMakeFiles/emosqpstatic.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code /Users/ted/cleo/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/build/solver_code/CMakeFiles/emosqpstatic.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : solver_code/CMakeFiles/emosqpstatic.dir/depend
 
