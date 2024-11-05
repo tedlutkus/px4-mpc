@@ -59,7 +59,6 @@ from px4_msgs.msg import ManualControlSetpoint
 
 from mpc_msgs.srv import SetPose
 
-from cvxpy import *
 import numpy as np
 import jax.numpy as jnp
 import cvxpy as cp
@@ -234,21 +233,21 @@ class SpacecraftMPC(Node):
         dt = 0.05
         A, B = calculate_jacobians(x0, u0)
         Ad, Bd = euler_discretize(A, B, dt)
-        self.Ad_param = Parameter(Ad.shape)
-        self.Bd_param = Parameter(Bd.shape)
+        self.Ad_param = cp.Parameter(Ad.shape)
+        self.Bd_param = cp.Parameter(Bd.shape)
         nx = 13
         nu = 4
-        self.u = Variable((nu, N))
-        self.x = Variable((nx, N+1))
-        self.x_init = Parameter(nx)
+        self.u = cp.Variable((nu, N))
+        self.x = cp.Variable((nx, N+1))
+        self.x_init = cp.Parameter(nx)
         objective = 0
         constraints = [self.x[:,0] == self.x_init]
         for k in range(N):
-            objective += quad_form(self.x[:,k] - xr, Q) + quad_form(self.u[:,k] - ur, R)
+            objective += cp.quad_form(self.x[:,k] - xr, Q) + cp.quad_form(self.u[:,k] - ur, R)
             constraints += [self.x[:,k+1] == self.Ad_param@self.x[:,k] + self.Bd_param@self.u[:,k]]
             constraints += [umin <= self.u[:,k], self.u[:,k] <= umax]
-        objective += quad_form(self.x[:,N] - xr, Q)
-        self.prob = Problem(Minimize(objective), constraints)
+        objective += cp.quad_form(self.x[:,N] - xr, Q)
+        self.prob = cp.Problem(cp.Minimize(objective), constraints)
         # cpg.generate_code(self.prob, code_dir='osqp_solver', solver='OSQP', solver_opts={'eps_abs': 1e-3, 'eps_rel': 1e-3, 'warm_start': True})
         self.prob.register_solve('CPG', cpg_solve)
 

@@ -1,4 +1,3 @@
-from cvxpy import *
 import numpy as np
 import jax.numpy as jnp
 import cvxpy as cp
@@ -89,46 +88,46 @@ horizon = N
 dt = 0.05
 A, B = calculate_jacobians(x0, u0)
 Ad, Bd = euler_discretize(A, B, dt)
-Ad_param = Parameter(Ad.shape)
-Bd_param = Parameter(Bd.shape)
+Ad_param = cp.Parameter(Ad.shape)
+Bd_param = cp.Parameter(Bd.shape)
 nx = 13
 nu = 4
-u = Variable((nu, N))
-x = Variable((nx, N+1))
-x_init = Parameter(nx)
+u = cp.Variable((nu, N))
+x = cp.Variable((nx, N+1))
+x_init = cp.Parameter(nx)
 objective = 0
 constraints = [x[:,0] == x_init]
 for k in range(N):
-    objective += quad_form(x[:,k] - xr, Q) + quad_form(u[:,k] - ur, R)
+    objective += cp.quad_form(x[:,k] - xr, Q) + cp.quad_form(u[:,k] - ur, R)
     constraints += [x[:,k+1] == Ad_param@x[:,k] + Bd_param@u[:,k]]
     constraints += [umin <= u[:,k], u[:,k] <= umax]
-objective += quad_form(x[:,N] - xr, Q)
-prob = Problem(Minimize(objective), constraints)
+objective += cp.quad_form(x[:,N] - xr, Q)
+prob = cp.Problem(cp.Minimize(objective), constraints)
 cpg.generate_code(prob, code_dir='osqp_solver', solver='OSQP', solver_opts={'eps_abs': 1e-3, 'eps_rel': 1e-3, 'warm_start': True})
 
 
-# from osqp_solver.cpg_solver import cpg_solve
-# prob.register_solve('CPG', cpg_solve)
+from osqp_solver.cpg_solver import cpg_solve
+prob.register_solve('CPG', cpg_solve)
 
 
-# prob.solve(method='CPG')
-# prob.solve(method='CPG')
-# prob.solve(method='CPG')
-# prob.solve(method='CPG')
-# prob.solve(method='CPG')
+prob.solve(method='CPG')
+prob.solve(method='CPG')
+prob.solve(method='CPG')
+prob.solve(method='CPG')
+prob.solve(method='CPG')
 
 
 
-# import time
-# t0 = time.time()
-# prob.solve(method='CPG')
-# tf = time.time()
-# print(((tf-t0)*1000.0))
+import time
+t0 = time.time()
+prob.solve(method='CPG')
+tf = time.time()
+print(((tf-t0)*1000.0))
 
-# A, B = calculate_jacobians(x0, u0)
-# Ad, Bd = euler_discretize(A, B, dt)
-# t0 = time.time()
-# A, B = calculate_jacobians(x0, u0)
-# Ad, Bd = euler_discretize(A, B, dt)
-# tf = time.time()
-# print(((tf-t0)*1000.0))
+A, B = calculate_jacobians(x0, u0)
+Ad, Bd = euler_discretize(A, B, dt)
+t0 = time.time()
+A, B = calculate_jacobians(x0, u0)
+Ad, Bd = euler_discretize(A, B, dt)
+tf = time.time()
+print(((tf-t0)*1000.0))
