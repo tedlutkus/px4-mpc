@@ -378,18 +378,18 @@ class SpacecraftMPC(Node):
         self.publisher_direct_actuator.publish(actuator_outputs_msg)
 
     def cmdloop_callback(self):
-        # Publish offboard control modes
-        offboard_msg = OffboardControlMode()
-        offboard_msg.timestamp = int(Clock().now().nanoseconds / 1000)
-        offboard_msg.position = False
-        offboard_msg.velocity = False
-        offboard_msg.acceleration = False
-        offboard_msg.attitude = False
-        offboard_msg.body_rate = False
-        offboard_msg.direct_actuator = False
-        #offboard_msg.body_rate = True
-        offboard_msg.thrust_and_torque = True
-        self.publisher_offboard_mode.publish(offboard_msg)
+        # # Publish offboard control modes
+        # offboard_msg = OffboardControlMode()
+        # offboard_msg.timestamp = int(Clock().now().nanoseconds / 1000)
+        # offboard_msg.position = False
+        # offboard_msg.velocity = False
+        # offboard_msg.acceleration = False
+        # offboard_msg.attitude = False
+        # offboard_msg.body_rate = False
+        # #offboard_msg.direct_actuator = False
+        # #offboard_msg.body_rate = True
+        # offboard_msg.thrust_and_torque = True
+        # self.publisher_offboard_mode.publish(offboard_msg)
 
         error_position = self.vehicle_local_position - self.setpoint_position
 
