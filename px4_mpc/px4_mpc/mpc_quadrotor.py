@@ -55,6 +55,7 @@ from px4_msgs.msg import VehicleRatesSetpoint
 from px4_msgs.msg import ActuatorMotors
 from px4_msgs.msg import VehicleTorqueSetpoint
 from px4_msgs.msg import VehicleThrustSetpoint
+from px4_msgs.msg import ManualControlSetpoint
 
 from mpc_msgs.srv import SetPose
 
