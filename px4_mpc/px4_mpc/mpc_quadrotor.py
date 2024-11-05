@@ -32,8 +32,7 @@
 #
 ############################################################################
 
-__author__ = "Pedro Roque, Jaeyoung Lim"
-__contact__ = "padr@kth.se, jalim@ethz.ch"
+from px4_mpc.osqp_solver.cpg_solver import cpg_solve
 
 import rclpy
 import numpy as np
@@ -58,7 +57,17 @@ from px4_msgs.msg import VehicleThrustSetpoint
 
 from mpc_msgs.srv import SetPose
 
-
+from cvxpy import *
+import numpy as np
+import jax.numpy as jnp
+import cvxpy as cp
+from jax import jacfwd, jacrev
+import time
+from jax import jit
+import matplotlib.pyplot as plt
+import jax
+jax.config.update('jax_platform_name', 'cpu')
+from cvxpygen import cpg
 
 def vector2PoseMsg(frame_id, position, attitude):
     pose_msg = PoseStamped()
@@ -74,7 +83,66 @@ def vector2PoseMsg(frame_id, position, attitude):
     pose_msg.pose.position.z = float(position[2])
     return pose_msg
 
+@jit
+def drone_dynamics_eqn(x, u):
+    J = jnp.array([0.03, 0.03, 0.06])
+    mass = 1.0#0.5
+    g = jnp.array([0, 0, -9.81])
 
+    angle = x[3:7]
+    vel = x[7:10]
+    a_rate = x[10:13]
+
+    thrust_acc = jnp.array([[0], [0], [u[0]]]) / mass
+
+    # Derivatives
+    d_rate = jnp.array([
+            1 / J[0] * (u[1] + (J[1] - J[2]) * a_rate[1] * a_rate[2]),
+            1 / J[1] * (-u[2] + (J[2] - J[0]) * a_rate[2] * a_rate[0]),
+            1 / J[2] * (u[3] + (J[0] - J[1]) * a_rate[0] * a_rate[1])])
+    d_velocity = jnp.ravel(v_dot_q(thrust_acc, angle)) + g
+    d_attitude = 1 / 2 * skew_symmetric(a_rate).dot(angle)
+    d_position = vel
+
+    x_dot = jnp.concatenate([d_position, d_attitude, d_velocity, d_rate])
+    return x_dot
+
+@jit
+def skew_symmetric(v):
+    return jnp.array(
+        [
+            [0, -v[0], -v[1], -v[2]],
+            [v[0], 0, v[2], -v[1]],
+            [v[1], -v[2], 0, v[0]],
+            [v[2], v[1], -v[0], 0],
+        ]
+    )
+    
+@jit
+def v_dot_q(v, q):
+    rot_mat = q_to_rot_mat(q)
+    return rot_mat.dot(v)
+
+@jit
+def q_to_rot_mat(q):
+    qw, qx, qy, qz = q[0], q[1], q[2], q[3]
+    return jnp.array([
+        [1 - 2 * (qy ** 2 + qz ** 2), 2 * (qx * qy - qw * qz), 2 * (qx * qz + qw * qy)],
+        [2 * (qx * qy + qw * qz), 1 - 2 * (qx ** 2 + qz ** 2), 2 * (qy * qz - qw * qx)],
+        [2 * (qx * qz - qw * qy), 2 * (qy * qz + qw * qx), 1 - 2 * (qx ** 2 + qy ** 2)]])
+    
+@jit
+def calculate_jacobians(x_op, u_op):
+    A = jacfwd(lambda x: drone_dynamics_eqn(x, u_op))(x_op)
+    B = jacfwd(lambda u: drone_dynamics_eqn(x_op, u))(u_op)
+    return A, B
+
+@jit
+def euler_discretize(A, B, dt):
+    I = jnp.eye(A.shape[0])  # Identity matrix
+    A_d = I + A * dt  # Euler approximation for A_d
+    B_d = B * dt      # Euler approximation for B_d
+    return A_d, B_d
 
 class SpacecraftMPC(Node):
 
@@ -123,33 +191,54 @@ class SpacecraftMPC(Node):
         self.reference_pub = self.create_publisher(Marker, "/px4_mpc/reference", 10)
         self.reference_pub = self.create_publisher(Marker, "/px4_mpc/reference", 10)
 
-        timer_period = 0.005  # seconds
+        timer_period = 0.0001  # seconds
         self.timer = self.create_timer(timer_period, self.cmdloop_callback)
 
         self.nav_state = VehicleStatus.NAVIGATION_STATE_MAX
-
-        # Create Spacecraft and controller objects
-        if self.mode == 'rate':
-            from px4_mpc.models.spacecraft_rate_model import SpacecraftRateModel
-            from px4_mpc.controllers.spacecraft_rate_mpc import SpacecraftRateMPC
-            self.model = SpacecraftRateModel()
-            self.mpc = SpacecraftRateMPC(self.model)
-        elif self.mode == 'wrench':
-            from px4_mpc.models.multirotor_wrench_model import MultirotorWrenchModel
-            from px4_mpc.controllers.multirotor_wrench_mpc import MultirotorWrenchMPC
-            self.model = MultirotorWrenchModel()
-            self.mpc = MultirotorWrenchMPC(self.model)
-        elif self.mode == 'direct_allocation':
-            from px4_mpc.models.spacecraft_direct_allocation_model import SpacecraftDirectAllocationModel
-            from px4_mpc.controllers.spacecraft_direct_allocation_mpc import SpacecraftDirectAllocationMPC
-            self.model = SpacecraftDirectAllocationModel()
-            self.mpc = SpacecraftDirectAllocationMPC(self.model)
 
         self.vehicle_attitude = np.array([1.0, 0.0, 0.0, 0.0])
         self.vehicle_local_position = np.array([0.0, 0.0, 0.0])
         self.vehicle_angular_velocity = np.array([0.0, 0.0, 0.0])
         self.vehicle_local_velocity = np.array([0.0, 0.0, 0.0])
-        self.setpoint_position = np.array([1.0, 0.0, 0.0])
+        self.setpoint_position = np.array([0.0, 0.0, 6.0])
+        
+        # Constraints
+        tmax = 1.0
+        umin = jnp.array([0.0, -tmax, -tmax, -tmax])
+        umax = jnp.array([10.0, tmax, tmax, tmax])
+
+        # Objective function
+        Q = jnp.diag(jnp.array([200, 200, 200, 0.1, 0.1, 0.1, 0.1, 1.0, 1.0, 1.0, 0.1, 0.1, 0.1]))
+        R = jnp.eye(4)*1.0
+
+        # Initial and reference states
+        x0 = jnp.array([1.0, -1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
+        xr = jnp.array([0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
+        u0 = jnp.array([9.8*0.5, 0.0, 0.0, 0.0])
+        self.u_prev = u0
+        ur = jnp.array([0.0, 0.0, 0.0, 0.0])
+        N = 10
+        self.horizon = N
+        dt = 0.05
+        A, B = calculate_jacobians(x0, u0)
+        Ad, Bd = euler_discretize(A, B, dt)
+        self.Ad_param = Parameter(Ad.shape)
+        self.Bd_param = Parameter(Bd.shape)
+        nx = 13
+        nu = 4
+        self.u = Variable((nu, N))
+        self.x = Variable((nx, N+1))
+        self.x_init = Parameter(nx)
+        objective = 0
+        constraints = [self.x[:,0] == self.x_init]
+        for k in range(N):
+            objective += quad_form(self.x[:,k] - xr, Q) + quad_form(self.u[:,k] - ur, R)
+            constraints += [self.x[:,k+1] == self.Ad_param@self.x[:,k] + self.Bd_param@self.u[:,k]]
+            constraints += [umin <= self.u[:,k], self.u[:,k] <= umax]
+        objective += quad_form(self.x[:,N] - xr, Q)
+        self.prob = Problem(Minimize(objective), constraints)
+        # cpg.generate_code(self.prob, code_dir='osqp_solver', solver='OSQP', solver_opts={'eps_abs': 1e-3, 'eps_rel': 1e-3, 'warm_start': True})
+        self.prob.register_solve('CPG', cpg_solve)
 
     def vehicle_attitude_callback(self, msg):
         # TODO: handle NED->ENU transformation
@@ -216,11 +305,13 @@ class SpacecraftMPC(Node):
         rates_setpoint_msg.thrust_body[1] = -float(thrust_command[1])
         rates_setpoint_msg.thrust_body[2] = -float(thrust_command[2])
         self.publisher_rates_setpoint.publish(rates_setpoint_msg)
+                
     def publish_rate_setpoint_wrench(self, x_pred, u_pred):
-        rates = x_pred[0, 10:13]
-        thrust_rates = u_pred[0, :]
+        rates = x_pred[10:13, 0]
+        thrust_rates = u_pred
+        
         # Hover thrust = 0.73
-        thrust_command = -(thrust_rates[0] * 0.07 + 0.0)
+        thrust_command = -thrust_rates[0]#(thrust_rates[0] * 0.07 + 0.0)
         setpoint_msg = VehicleRatesSetpoint()
         setpoint_msg.timestamp = int(Clock().now().nanoseconds / 1000)
         setpoint_msg.roll = float(rates[0])
@@ -230,6 +321,7 @@ class SpacecraftMPC(Node):
         setpoint_msg.thrust_body[1] = 0.0
         setpoint_msg.thrust_body[2] = float(thrust_command)
         self.publisher_rates_setpoint.publish(setpoint_msg)
+
     def publish_wrench_setpoint(self, u_pred):
         thrust_outputs_msg = VehicleThrustSetpoint()
         thrust_outputs_msg.timestamp = int(Clock().now().nanoseconds / 1000)
@@ -237,8 +329,8 @@ class SpacecraftMPC(Node):
         torque_outputs_msg = VehicleTorqueSetpoint()
         torque_outputs_msg.timestamp = int(Clock().now().nanoseconds / 1000)
 
-        thrust_outputs_msg.xyz = [u_pred[0,0], -u_pred[0,1], -0.0]
-        torque_outputs_msg.xyz = [0.0, -0.0, -u_pred[0,2]]
+        thrust_outputs_msg.xyz = [0.0, 0.0, -u_pred[0]]
+        torque_outputs_msg.xyz = [u_pred[1]/(13.4), -u_pred[2]/(13.4), -u_pred[3]/(13.4)]
 
         self.publisher_thrust_setpoint.publish(thrust_outputs_msg)
         self.publisher_torque_setpoint.publish(torque_outputs_msg)
@@ -283,64 +375,59 @@ class SpacecraftMPC(Node):
         offboard_msg.attitude = False
         offboard_msg.body_rate = False
         offboard_msg.direct_actuator = False
-        if self.mode == 'rate':
-            offboard_msg.body_rate = True
-        elif self.mode == 'direct_allocation':
-            offboard_msg.direct_actuator = True
-        elif self.mode == 'wrench':
-            offboard_msg.body_rate = True
-            # offboard_msg.thrust_and_torque = True
+        #offboard_msg.body_rate = True
+        offboard_msg.thrust_and_torque = True
         self.publisher_offboard_mode.publish(offboard_msg)
 
         error_position = self.vehicle_local_position - self.setpoint_position
 
-        if self.mode == 'rate':
-            x0 = np.array([error_position[0],
-                           error_position[1],
-                           error_position[2],
-                           self.vehicle_local_velocity[0],
-                           self.vehicle_local_velocity[1],
-                           self.vehicle_local_velocity[2],
-                           self.vehicle_attitude[0],
-                           self.vehicle_attitude[1],
-                           self.vehicle_attitude[2],
-                           self.vehicle_attitude[3]]).reshape(10, 1)
-        elif self.mode == 'direct_allocation' or self.mode == 'wrench':
-            x0 = np.array([error_position[0],
-                           error_position[1],
-                           error_position[2],
-                           self.vehicle_local_velocity[0],
-                           self.vehicle_local_velocity[1],
-                           self.vehicle_local_velocity[2],
-                           self.vehicle_attitude[0],
-                           self.vehicle_attitude[1],
-                           self.vehicle_attitude[2],
-                           self.vehicle_attitude[3],
-                           self.vehicle_angular_velocity[0],
-                           self.vehicle_angular_velocity[1],
-                           self.vehicle_angular_velocity[2]]).reshape(13, 1)
-        u_pred, x_pred = self.mpc.solve(x0)
+        x0 = np.array([error_position[0],
+                        error_position[1],
+                        error_position[2],
+                        self.vehicle_attitude[0],
+                        self.vehicle_attitude[1],
+                        self.vehicle_attitude[2],
+                        self.vehicle_attitude[3],
+                        self.vehicle_local_velocity[0],
+                        self.vehicle_local_velocity[1],
+                        self.vehicle_local_velocity[2],
+                        self.vehicle_angular_velocity[0],
+                        self.vehicle_angular_velocity[1],
+                        self.vehicle_angular_velocity[2]]).reshape(13, 1)
+            
+        self.x_init.value = x0.reshape(13)
+        dt = 0.05
+        A, B = calculate_jacobians(jnp.array(x0.reshape(13)), self.u_prev)
+        Ad, Bd = euler_discretize(A, B, dt)
+        self.Ad_param.value = np.array(Ad)
+        self.Bd_param.value = np.array(Bd)
+        # self.prob.solve(solver=cp.OSQP, warm_start=True, eps_rel=1e-3, eps_abs=1e-3)
+        self.prob.solve(method='CPG')
+        u_pred = self.u[:,0].value
+        x_pred = self.x.value
+        self.u_prev = u_pred
 
         idx = 0
         predicted_path_msg = Path()
-        for predicted_state in x_pred:
+        for i in range(self.horizon):
             idx = idx + 1
             # Publish time history of the vehicle path
-            predicted_pose_msg = vector2PoseMsg('map', predicted_state[0:3] + self.setpoint_position, np.array([1.0, 0.0, 0.0, 0.0]))
+            predicted_pose_msg = vector2PoseMsg('map', x_pred[0:3, i] + self.setpoint_position, np.array([1.0, 0.0, 0.0, 0.0]))
             predicted_path_msg.header = predicted_pose_msg.header
             predicted_path_msg.poses.append(predicted_pose_msg)
         self.predicted_path_pub.publish(predicted_path_msg)
         self.publish_reference(self.reference_pub, self.setpoint_position)
 
-        if self.nav_state == VehicleStatus.NAVIGATION_STATE_OFFBOARD:
-            if self.mode == 'rate':
-                pass
-                #self.publish_rate_setpoint(u_pred)
-            elif self.mode == 'direct_allocation':
-                self.publish_direct_actuator_setpoint(u_pred)
-            elif self.mode == 'wrench':
-                # self.publish_wrench_setpoint(u_pred)
-                self.publish_rate_setpoint_wrench(x_pred, u_pred)
+        self.publish_wrench_setpoint(u_pred)
+        # if self.nav_state == VehicleStatus.NAVIGATION_STATE_OFFBOARD:
+        #     if self.mode == 'rate':
+        #         pass
+        #         #self.publish_rate_setpoint(u_pred)
+        #     elif self.mode == 'direct_allocation':
+        #         self.publish_direct_actuator_setpoint(u_pred)
+        #     elif self.mode == 'wrench':
+        #         # self.publish_wrench_setpoint(u_pred)
+        #         self.publish_rate_setpoint_wrench(x_pred, u_pred)
 
     def add_set_pos_callback(self, request, response):
         self.setpoint_position[0] = request.pose.position.x

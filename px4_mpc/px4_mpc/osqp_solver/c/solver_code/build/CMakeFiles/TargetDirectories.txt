@@ -1,0 +1,8 @@
+/home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/build/CMakeFiles/emosqpstatic.dir
+/home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/build/CMakeFiles/example.dir
+/home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/build/CMakeFiles/edit_cache.dir
+/home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/build/CMakeFiles/rebuild_cache.dir
+/home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/build/src/osqp/CMakeFiles/edit_cache.dir
+/home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/build/src/osqp/CMakeFiles/rebuild_cache.dir
+/home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/build/include/CMakeFiles/edit_cache.dir
+/home/ted/ros2_ws/src/px4-mpc/px4_mpc/px4_mpc/osqp_solver/c/solver_code/build/include/CMakeFiles/rebuild_cache.dir
