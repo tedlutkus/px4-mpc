@@ -153,7 +153,10 @@ RUN pip install cvxpygen
 
 WORKDIR /opt/ros/overlay_ws/src/px4_mpc/px4_mpc/px4_mpc
 RUN python3 build_osqp_solver.py
-
+RUN mv /opt/ros/overlay_ws/src/px4_mpc/px4_mpc/px4_mpc/cpg_solver.py /opt/ros/overlay_ws/src/px4_mpc/px4_mpc/px4_mpc/osqp_solver/
+# move cpg_solver.py file into osqp_solver/ directory
+WORKDIR /opt/ros/overlay_ws/src/px4_mpc/px4_mpc/px4_mpc/osqp_solver
+RUN pip install -e .
 
 # source entrypoint setup
 ENV OVERLAY_WS $OVERLAY_WS
