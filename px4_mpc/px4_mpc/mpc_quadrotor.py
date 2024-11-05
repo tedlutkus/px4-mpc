@@ -180,6 +180,11 @@ class SpacecraftMPC(Node):
             '/fmu/out/vehicle_local_position',
             self.vehicle_local_position_callback,
             qos_profile)
+        self.manual_control_sub = self.create_subscription(
+            ManualControlSetpoint,
+            '/fmu/out/manual_control_setpoint',
+            self.manual_control_callback,
+            qos_profile)
 
         self.set_pose_srv = self.create_service(SetPose, '/set_pose', self.add_set_pos_callback)
 
@@ -442,7 +447,13 @@ class SpacecraftMPC(Node):
 
         return response
 
-
+    def manual_control_callback(self, msg):
+        if abs(msg.pitch) > 0.0:
+            self.setpoint_position[0] = self.vehicle_local_position[0] + (msg.pitch * self.scale_x_control * 0.5/0.66)
+        if abs(msg.roll) > 0.0:
+            self.setpoint_position[1] = self.vehicle_local_position[1] + (msg.roll * self.scale_y_control * 0.5/0.66)
+        if abs(msg.throttle) > 0.0:
+            self.setpoint_position[2] = self.vehicle_local_position[2] + (msg.throttle * self.scale_z_control * 0.5/0.66)
 
 def main(args=None):
     rclpy.init(args=args)
