@@ -9,7 +9,8 @@ import warnings
 import numpy as np
 from cvxpy.reductions import Solution
 from cvxpy.problems.problem import SolverStats
-from osqp_solver import cpg_module
+import cpg_module
+#from osqp_solver import cpg_module
 
 
 standard_settings_names = {"max_iters": "maxit"}
