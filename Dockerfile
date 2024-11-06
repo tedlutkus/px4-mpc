@@ -153,8 +153,10 @@ RUN pip install cvxpygen
 
 WORKDIR /opt/ros/overlay_ws/src/px4_mpc/px4_mpc/px4_mpc
 RUN python3 build_osqp_solver.py
+# Remove the auto-built cpg solver file
+RUN rm -f /opt/ros/overlay_ws/src/px4_mpc/px4_mpc/px4_mpc/osqp_solver/cpg_solver.py
+# Move the modified file to replace the original cpg_solver
 RUN mv /opt/ros/overlay_ws/src/px4_mpc/px4_mpc/px4_mpc/cpg_solver.py /opt/ros/overlay_ws/src/px4_mpc/px4_mpc/px4_mpc/osqp_solver/
-# move cpg_solver.py file into osqp_solver/ directory
 WORKDIR /opt/ros/overlay_ws/src/px4_mpc/px4_mpc/px4_mpc/osqp_solver
 RUN pip install -e .
 

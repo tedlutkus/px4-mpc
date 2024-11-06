@@ -104,11 +104,18 @@ for k in range(N):
 objective += cp.quad_form(x[:,N] - xr, Q)
 prob = cp.Problem(cp.Minimize(objective), constraints)
 cpg.generate_code(prob, code_dir='osqp_solver', solver='OSQP', solver_opts={'eps_abs': 1e-3, 'eps_rel': 1e-3, 'warm_start': True})
-
+exit()
 
 from osqp_solver.cpg_solver import cpg_solve
 prob.register_solve('CPG', cpg_solve)
 
+
+x_init.value = np.array(x0)
+dt = 0.05
+A, B = calculate_jacobians(jnp.array(x0), np.array(u0))
+Ad, Bd = euler_discretize(A, B, dt)
+Ad_param.value = np.array(Ad)
+Bd_param.value = np.array(Bd)
 
 prob.solve(method='CPG')
 prob.solve(method='CPG')
