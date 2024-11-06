@@ -5,5 +5,5 @@
     "scale_x_control": 4.0,
     "scale_y_control": -4.0,
     "scale_z_control": 2,
-    "control_mode": "rate"
+    "control_mode": "torque"
 }

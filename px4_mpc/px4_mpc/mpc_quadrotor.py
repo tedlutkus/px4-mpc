@@ -433,7 +433,7 @@ class SpacecraftMPC(Node):
         if self.control_mode == 'torque':
             self.publish_wrench_setpoint(u_pred)
         else:
-            self.publish_rate_setpoint_wrench(u_pred)
+            self.publish_rate_setpoint_wrench(x_pred, u_pred)
         # if self.nav_state == VehicleStatus.NAVIGATION_STATE_OFFBOARD:
         #     if self.mode == 'rate':
         #         pass
