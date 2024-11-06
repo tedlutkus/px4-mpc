@@ -250,6 +250,7 @@ class SpacecraftMPC(Node):
         self.prob = cp.Problem(cp.Minimize(objective), constraints)
         # cpg.generate_code(self.prob, code_dir='osqp_solver', solver='OSQP', solver_opts={'eps_abs': 1e-3, 'eps_rel': 1e-3, 'warm_start': True})
         self.prob.register_solve('CPG', cpg_solve)
+        self.control_mode = data['control_mode']
 
     def vehicle_attitude_callback(self, msg):
         # TODO: handle NED->ENU transformation
@@ -429,7 +430,10 @@ class SpacecraftMPC(Node):
         self.predicted_path_pub.publish(predicted_path_msg)
         self.publish_reference(self.reference_pub, self.setpoint_position)
 
-        self.publish_wrench_setpoint(u_pred)
+        if self.control_mode == 'torque':
+            self.publish_wrench_setpoint(u_pred)
+        else:
+            self.publish_rate_setpoint_wrench(u_pred)
         # if self.nav_state == VehicleStatus.NAVIGATION_STATE_OFFBOARD:
         #     if self.mode == 'rate':
         #         pass
