@@ -409,12 +409,19 @@ class SpacecraftMPC(Node):
             
         self.x_init.value = x0.reshape(13)
         dt = 0.05
+        t0 = time.time()
         A, B = calculate_jacobians(jnp.array(x0.reshape(13)), self.u_prev)
         Ad, Bd = euler_discretize(A, B, dt)
+        tf = time.time()
+        linearize_time = (tf - t0)*1000
         self.Ad_param.value = np.array(Ad)
         self.Bd_param.value = np.array(Bd)
         # self.prob.solve(solver=cp.OSQP, warm_start=True, eps_rel=1e-3, eps_abs=1e-3)
+        t0 = time.time()
         self.prob.solve(method='CPG')
+        tf = time.time()
+        solve_time = (tf - t0)*1000
+        self.get_logger().info(f"Time to linearize: {linearize_time}, time to solve {solve_time}")
         u_pred = self.u[:,0].value
         x_pred = self.x.value
         self.u_prev = u_pred
