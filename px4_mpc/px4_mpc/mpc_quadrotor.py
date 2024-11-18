@@ -197,8 +197,8 @@ class SpacecraftMPC(Node):
         self.reference_pub = self.create_publisher(Marker, "/px4_mpc/reference", 10)
         self.reference_pub = self.create_publisher(Marker, "/px4_mpc/reference", 10)
 
-        timer_period = 0.0001  # seconds
-        self.timer = self.create_timer(timer_period, self.cmdloop_callback)
+        #timer_period = 0.0001  # seconds
+        #self.timer = self.create_timer(timer_period, self.cmdloop_callback)
 
         self.nav_state = VehicleStatus.NAVIGATION_STATE_MAX
 
@@ -409,33 +409,33 @@ class SpacecraftMPC(Node):
             
         self.x_init.value = x0.reshape(13)
         dt = 0.05
-        t0 = time.time()
+        #t0 = time.time()
         A, B = calculate_jacobians(jnp.array(x0.reshape(13)), self.u_prev)
         Ad, Bd = euler_discretize(A, B, dt)
-        tf = time.time()
-        linearize_time = (tf - t0)*1000
+        #tf = time.time()
+        #linearize_time = (tf - t0)*1000
         self.Ad_param.value = np.array(Ad)
         self.Bd_param.value = np.array(Bd)
         # self.prob.solve(solver=cp.OSQP, warm_start=True, eps_rel=1e-3, eps_abs=1e-3)
-        t0 = time.time()
+        #t0 = time.time()
         self.prob.solve(method='CPG')
-        tf = time.time()
-        solve_time = (tf - t0)*1000
-        self.get_logger().info(f"Time to linearize: {linearize_time}, time to solve {solve_time}")
+        #tf = time.time()
+        #solve_time = (tf - t0)*1000
+        #self.get_logger().info(f"Time to linearize: {linearize_time}, time to solve {solve_time}")
         u_pred = self.u[:,0].value
         x_pred = self.x.value
         self.u_prev = u_pred
 
-        idx = 0
-        predicted_path_msg = Path()
-        for i in range(self.horizon):
-            idx = idx + 1
-            # Publish time history of the vehicle path
-            predicted_pose_msg = vector2PoseMsg('map', x_pred[0:3, i] + self.setpoint_position, np.array([1.0, 0.0, 0.0, 0.0]))
-            predicted_path_msg.header = predicted_pose_msg.header
-            predicted_path_msg.poses.append(predicted_pose_msg)
-        self.predicted_path_pub.publish(predicted_path_msg)
-        self.publish_reference(self.reference_pub, self.setpoint_position)
+        #idx = 0
+        #predicted_path_msg = Path()
+        #for i in range(self.horizon):
+        #    idx = idx + 1
+        #    # Publish time history of the vehicle path
+        #    predicted_pose_msg = vector2PoseMsg('map', x_pred[0:3, i] + self.setpoint_position, np.array([1.0, 0.0, 0.0, 0.0]))
+        #    predicted_path_msg.header = predicted_pose_msg.header
+        #    predicted_path_msg.poses.append(predicted_pose_msg)
+        #self.predicted_path_pub.publish(predicted_path_msg)
+        #self.publish_reference(self.reference_pub, self.setpoint_position)
 
         if self.control_mode == 'torque':
             self.publish_wrench_setpoint(u_pred)
@@ -471,7 +471,9 @@ def main(args=None):
 
     spacecraft_mpc = SpacecraftMPC()
 
-    rclpy.spin(spacecraft_mpc)
+    while rclpy.ok():
+        spacecraft_mpc.cmdloop_callback()
+        rclpy.spin_once(spacecraft_mpc)
 
     spacecraft_mpc.destroy_node()
     rclpy.shutdown()
