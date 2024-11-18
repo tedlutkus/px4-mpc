@@ -147,9 +147,9 @@ RUN pip install setuptools
 RUN pip install numpy
 RUN pip install meson
 RUN pip install osqp scipy
-RUN pip install cvxpy
+RUN pip install cvxpy==1.5.3
 RUN pip install jax
-RUN pip install cvxpygen
+RUN pip install cvxpygen==0.3.6
 
 WORKDIR /opt/ros/overlay_ws/src/px4_mpc/px4_mpc/px4_mpc
 RUN python3 build_osqp_solver.py
