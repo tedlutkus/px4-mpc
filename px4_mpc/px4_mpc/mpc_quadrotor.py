@@ -378,6 +378,7 @@ class SpacecraftMPC(Node):
         self.publisher_direct_actuator.publish(actuator_outputs_msg)
 
     def cmdloop_callback(self):
+        t0 = time.time()
         # # Publish offboard control modes
         # offboard_msg = OffboardControlMode()
         # offboard_msg.timestamp = int(Clock().now().nanoseconds / 1000)
@@ -450,6 +451,10 @@ class SpacecraftMPC(Node):
         #     elif self.mode == 'wrench':
         #         # self.publish_wrench_setpoint(u_pred)
         #         self.publish_rate_setpoint_wrench(x_pred, u_pred)
+        tf = time.time()
+        total_time = (tf-t0)*1000.0
+        self.get_logger().info(f"Total cmdloop time: {total_time}")
+
 
     def add_set_pos_callback(self, request, response):
         self.setpoint_position[0] = request.pose.position.x
