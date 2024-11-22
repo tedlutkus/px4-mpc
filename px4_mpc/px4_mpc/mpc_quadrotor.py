@@ -159,11 +159,11 @@ class SpacecraftMPC(Node):
         # Get mode; rate, wrench, direct_allocation
         self.mode = 'wrench'#self.declare_parameter('mode', 'rate').value
 
-        self.status_sub = self.create_subscription(
-            VehicleStatus,
-            '/fmu/out/vehicle_status',
-            self.vehicle_status_callback,
-            qos_profile)
+        #self.status_sub = self.create_subscription(
+        #    VehicleStatus,
+        #    '/fmu/out/vehicle_status',
+        #    self.vehicle_status_callback,
+        #    qos_profile)
 
         self.attitude_sub = self.create_subscription(
             VehicleAttitude,
@@ -188,14 +188,14 @@ class SpacecraftMPC(Node):
 
         self.set_pose_srv = self.create_service(SetPose, '/set_pose', self.add_set_pos_callback)
 
-        self.publisher_offboard_mode = self.create_publisher(OffboardControlMode, '/fmu/in/offboard_control_mode', qos_profile)
+        #self.publisher_offboard_mode = self.create_publisher(OffboardControlMode, '/fmu/in/offboard_control_mode', qos_profile)
         self.publisher_rates_setpoint = self.create_publisher(VehicleRatesSetpoint, '/fmu/in/vehicle_rates_setpoint', qos_profile)
-        self.publisher_direct_actuator = self.create_publisher(ActuatorMotors, '/fmu/in/actuator_motors', qos_profile)
+        #self.publisher_direct_actuator = self.create_publisher(ActuatorMotors, '/fmu/in/actuator_motors', qos_profile)
         self.publisher_thrust_setpoint = self.create_publisher(VehicleThrustSetpoint, '/fmu/in/vehicle_thrust_setpoint', qos_profile)
         self.publisher_torque_setpoint = self.create_publisher(VehicleTorqueSetpoint, '/fmu/in/vehicle_torque_setpoint', qos_profile)
-        self.predicted_path_pub = self.create_publisher(Path, '/px4_mpc/predicted_path', 10)
-        self.reference_pub = self.create_publisher(Marker, "/px4_mpc/reference", 10)
-        self.reference_pub = self.create_publisher(Marker, "/px4_mpc/reference", 10)
+        #self.predicted_path_pub = self.create_publisher(Path, '/px4_mpc/predicted_path', 10)
+        #self.reference_pub = self.create_publisher(Marker, "/px4_mpc/reference", 10)
+        #self.reference_pub = self.create_publisher(Marker, "/px4_mpc/reference", 10)
 
         #timer_period = 0.0001  # seconds
         #self.timer = self.create_timer(timer_period, self.cmdloop_callback)
@@ -378,7 +378,7 @@ class SpacecraftMPC(Node):
         self.publisher_direct_actuator.publish(actuator_outputs_msg)
 
     def cmdloop_callback(self):
-        t0 = time.time()
+        # t0 = time.time()
         # # Publish offboard control modes
         # offboard_msg = OffboardControlMode()
         # offboard_msg.timestamp = int(Clock().now().nanoseconds / 1000)
@@ -451,9 +451,10 @@ class SpacecraftMPC(Node):
         #     elif self.mode == 'wrench':
         #         # self.publish_wrench_setpoint(u_pred)
         #         self.publish_rate_setpoint_wrench(x_pred, u_pred)
-        tf = time.time()
-        total_time = (tf-t0)*1000.0
-        self.get_logger().info(f"Total cmdloop time: {total_time}")
+        
+        # tf = time.time()
+        # total_time = (tf-t0)*1000.0
+        # self.get_logger().info(f"Total cmdloop time: {total_time}")
 
 
     def add_set_pos_callback(self, request, response):
