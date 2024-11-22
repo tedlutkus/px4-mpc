@@ -217,8 +217,11 @@ class SpacecraftMPC(Node):
         with open("/mpc_config/qr_weights.json", 'r') as file:
             data = json.load(file)
         Q = jnp.diag(jnp.array(data['Q']))
-        R = jnp.diag(jnp.array(data['R']))            
-
+        R = jnp.diag(jnp.array(data['R']))
+        self.control_mode = data['control_mode']
+        self.scale_x_control = data['scale_x_control']
+        self.scale_y_control = data['scale_y_control']
+        self.scale_z_control = data['scale_z_control']
         #Q = jnp.diag(jnp.array([200, 200, 200, 0.1, 0.1, 0.1, 0.1, 1.0, 1.0, 1.0, 0.1, 0.1, 0.1]))
         #R = jnp.eye(4)*1.0
 
@@ -250,7 +253,7 @@ class SpacecraftMPC(Node):
         self.prob = cp.Problem(cp.Minimize(objective), constraints)
         # cpg.generate_code(self.prob, code_dir='osqp_solver', solver='OSQP', solver_opts={'eps_abs': 1e-3, 'eps_rel': 1e-3, 'warm_start': True})
         self.prob.register_solve('CPG', cpg_solve)
-        self.control_mode = data['control_mode']
+        
 
     def vehicle_attitude_callback(self, msg):
         # TODO: handle NED->ENU transformation
@@ -451,7 +454,7 @@ class SpacecraftMPC(Node):
         #     elif self.mode == 'wrench':
         #         # self.publish_wrench_setpoint(u_pred)
         #         self.publish_rate_setpoint_wrench(x_pred, u_pred)
-        
+
         # tf = time.time()
         # total_time = (tf-t0)*1000.0
         # self.get_logger().info(f"Total cmdloop time: {total_time}")
