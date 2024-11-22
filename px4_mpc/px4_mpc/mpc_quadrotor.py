@@ -206,7 +206,7 @@ class SpacecraftMPC(Node):
         self.vehicle_local_position = np.array([0.0, 0.0, 0.0])
         self.vehicle_angular_velocity = np.array([0.0, 0.0, 0.0])
         self.vehicle_local_velocity = np.array([0.0, 0.0, 0.0])
-        self.setpoint_position = np.array([0.0, 0.0, 6.0])
+        self.setpoint_position = np.array([0.0, 0.0, 1.0])
         
         # Constraints
         tmax = 1.0
@@ -223,7 +223,7 @@ class SpacecraftMPC(Node):
         #R = jnp.eye(4)*1.0
 
         # Initial and reference states
-        x0 = jnp.array([1.0, -1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
+        x0 = jnp.array([0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
         xr = jnp.array([0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
         u0 = jnp.array([9.8*0.5, 0.0, 0.0, 0.0])
         self.u_prev = u0
