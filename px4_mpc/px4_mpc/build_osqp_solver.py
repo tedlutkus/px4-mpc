@@ -70,7 +70,7 @@ def euler_discretize(A, B, dt):
     return A_d, B_d
 
 # Constraints
-tmax = 0.12
+tmax = 0.5
 umin = jnp.array([0.0, -tmax, -tmax, -tmax])
 umax = jnp.array([10.0, tmax, tmax, tmax])      
 
