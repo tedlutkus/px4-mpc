@@ -209,7 +209,7 @@ class SpacecraftMPC(Node):
         self.setpoint_position = np.array([0.0, 0.0, 1.0])
         
         # Constraints
-        tmax = 1.0
+        tmax = 0.12
         umin = jnp.array([0.0, -tmax, -tmax, -tmax])
         umax = jnp.array([10.0, tmax, tmax, tmax])
 
